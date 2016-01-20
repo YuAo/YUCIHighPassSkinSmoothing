@@ -10,7 +10,7 @@
 
 @interface YUCIHighPassSkinSmoothingFilter : CIFilter
 
-@property (nonatomic,retain) CIImage *inputImage;
+@property (nonatomic,strong) CIImage *inputImage;
 
 @property (nonatomic,copy) NSNumber *inputAmount;
 

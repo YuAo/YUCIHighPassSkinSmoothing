@@ -1,0 +1,6 @@
+framework module YUCIHighPassSkinSmoothing {
+  umbrella header "YUCIHighPassSkinSmoothing-umbrella.h"
+
+  export *
+  module * { export * }
+}

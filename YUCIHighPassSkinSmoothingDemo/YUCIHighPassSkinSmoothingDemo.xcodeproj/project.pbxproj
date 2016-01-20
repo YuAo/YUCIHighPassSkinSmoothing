@@ -1,0 +1,379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9D03DDAE1C4F520500F4D117 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDAD1C4F520500F4D117 /* AppDelegate.swift */; };
+		9D03DDB31C4F520500F4D117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D03DDB11C4F520500F4D117 /* Main.storyboard */; };
+		9D03DDB51C4F520500F4D117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D03DDB41C4F520500F4D117 /* Assets.xcassets */; };
+		9D03DDB81C4F520500F4D117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D03DDB61C4F520500F4D117 /* LaunchScreen.storyboard */; };
+		9D03DDC01C4F5B1500F4D117 /* DefaultRenderContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDBF1C4F5B1500F4D117 /* DefaultRenderContextViewController.swift */; };
+		9D03DDC21C4F5E0000F4D117 /* MetalRenderContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDC11C4F5E0000F4D117 /* MetalRenderContextViewController.swift */; };
+		9D03DDC41C4F717400F4D117 /* OpenGLRenderContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDC31C4F717400F4D117 /* OpenGLRenderContextViewController.swift */; };
+		CBE18CFEEE8B1EF6ED067FC4 /* Pods_YUCIHighPassSkinSmoothingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460344AF53D957061FB5811B /* Pods_YUCIHighPassSkinSmoothingDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		26752024ABA38C26F01BC1FC /* Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YUCIHighPassSkinSmoothingDemo/Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		460344AF53D957061FB5811B /* Pods_YUCIHighPassSkinSmoothingDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YUCIHighPassSkinSmoothingDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D8A53ED979BCA83B7CC518 /* Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YUCIHighPassSkinSmoothingDemo/Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9D03DDAA1C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YUCIHighPassSkinSmoothingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D03DDAD1C4F520500F4D117 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9D03DDB21C4F520500F4D117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9D03DDB41C4F520500F4D117 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9D03DDB71C4F520500F4D117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9D03DDB91C4F520500F4D117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D03DDBF1C4F5B1500F4D117 /* DefaultRenderContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRenderContextViewController.swift; sourceTree = "<group>"; };
+		9D03DDC11C4F5E0000F4D117 /* MetalRenderContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalRenderContextViewController.swift; sourceTree = "<group>"; };
+		9D03DDC31C4F717400F4D117 /* OpenGLRenderContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLRenderContextViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9D03DDA71C4F520500F4D117 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBE18CFEEE8B1EF6ED067FC4 /* Pods_YUCIHighPassSkinSmoothingDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D03DDA11C4F520500F4D117 = {
+			isa = PBXGroup;
+			children = (
+				9D03DDAC1C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo */,
+				9D03DDAB1C4F520500F4D117 /* Products */,
+				F934511DE826D41DFC54389E /* Pods */,
+				E2515E84BB8022B4BB27961A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9D03DDAB1C4F520500F4D117 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D03DDAA1C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D03DDAC1C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9D03DDAD1C4F520500F4D117 /* AppDelegate.swift */,
+				9D03DDBF1C4F5B1500F4D117 /* DefaultRenderContextViewController.swift */,
+				9D03DDC31C4F717400F4D117 /* OpenGLRenderContextViewController.swift */,
+				9D03DDC11C4F5E0000F4D117 /* MetalRenderContextViewController.swift */,
+				9D03DDB11C4F520500F4D117 /* Main.storyboard */,
+				9D03DDB41C4F520500F4D117 /* Assets.xcassets */,
+				9D03DDB61C4F520500F4D117 /* LaunchScreen.storyboard */,
+				9D03DDB91C4F520500F4D117 /* Info.plist */,
+			);
+			path = YUCIHighPassSkinSmoothingDemo;
+			sourceTree = "<group>";
+		};
+		E2515E84BB8022B4BB27961A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				460344AF53D957061FB5811B /* Pods_YUCIHighPassSkinSmoothingDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F934511DE826D41DFC54389E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				26752024ABA38C26F01BC1FC /* Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig */,
+				56D8A53ED979BCA83B7CC518 /* Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9D03DDA91C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D03DDBC1C4F520500F4D117 /* Build configuration list for PBXNativeTarget "YUCIHighPassSkinSmoothingDemo" */;
+			buildPhases = (
+				CE6FF8805A07775060260F6F /* Check Pods Manifest.lock */,
+				9D03DDA61C4F520500F4D117 /* Sources */,
+				9D03DDA71C4F520500F4D117 /* Frameworks */,
+				9D03DDA81C4F520500F4D117 /* Resources */,
+				C61F94FBC0ABCB6D8AC519BE /* Embed Pods Frameworks */,
+				98B2110FA6AA82726602D16F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YUCIHighPassSkinSmoothingDemo;
+			productName = YUCIHighPassSkinSmoothingDemo;
+			productReference = 9D03DDAA1C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D03DDA21C4F520500F4D117 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = YuAo;
+				TargetAttributes = {
+					9D03DDA91C4F520500F4D117 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 9D03DDA51C4F520500F4D117 /* Build configuration list for PBXProject "YUCIHighPassSkinSmoothingDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9D03DDA11C4F520500F4D117;
+			productRefGroup = 9D03DDAB1C4F520500F4D117 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D03DDA91C4F520500F4D117 /* YUCIHighPassSkinSmoothingDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9D03DDA81C4F520500F4D117 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D03DDB81C4F520500F4D117 /* LaunchScreen.storyboard in Resources */,
+				9D03DDB51C4F520500F4D117 /* Assets.xcassets in Resources */,
+				9D03DDB31C4F520500F4D117 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		98B2110FA6AA82726602D16F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YUCIHighPassSkinSmoothingDemo/Pods-YUCIHighPassSkinSmoothingDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C61F94FBC0ABCB6D8AC519BE /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YUCIHighPassSkinSmoothingDemo/Pods-YUCIHighPassSkinSmoothingDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE6FF8805A07775060260F6F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9D03DDA61C4F520500F4D117 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D03DDC21C4F5E0000F4D117 /* MetalRenderContextViewController.swift in Sources */,
+				9D03DDC01C4F5B1500F4D117 /* DefaultRenderContextViewController.swift in Sources */,
+				9D03DDAE1C4F520500F4D117 /* AppDelegate.swift in Sources */,
+				9D03DDC41C4F717400F4D117 /* OpenGLRenderContextViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9D03DDB11C4F520500F4D117 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9D03DDB21C4F520500F4D117 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9D03DDB61C4F520500F4D117 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9D03DDB71C4F520500F4D117 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9D03DDBA1C4F520500F4D117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9D03DDBB1C4F520500F4D117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9D03DDBD1C4F520500F4D117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26752024ABA38C26F01BC1FC /* Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YUCIHighPassSkinSmoothingDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.imyuao.YUCIHighPassSkinSmoothingDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9D03DDBE1C4F520500F4D117 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56D8A53ED979BCA83B7CC518 /* Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YUCIHighPassSkinSmoothingDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.imyuao.YUCIHighPassSkinSmoothingDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D03DDA51C4F520500F4D117 /* Build configuration list for PBXProject "YUCIHighPassSkinSmoothingDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D03DDBA1C4F520500F4D117 /* Debug */,
+				9D03DDBB1C4F520500F4D117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D03DDBC1C4F520500F4D117 /* Build configuration list for PBXNativeTarget "YUCIHighPassSkinSmoothingDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D03DDBD1C4F520500F4D117 /* Debug */,
+				9D03DDBE1C4F520500F4D117 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D03DDA21C4F520500F4D117 /* Project object */;
+}

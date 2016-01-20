@@ -13,7 +13,7 @@
 
 @interface YUCIGreenBlueChannelOverlayBlendFilter : CIFilter
 
-@property (nonatomic,retain) CIImage *inputImage;
+@property (nonatomic,strong) CIImage *inputImage;
 
 @end
 
@@ -39,8 +39,8 @@
 
 @interface YUCIDermabrasionGaussianHighPassWithHardLightFilter : CIFilter
 
-@property (nonatomic,retain) CIImage *inputImage;
-@property (nonatomic,retain) CIImage *inputGaussianBlurredImage;
+@property (nonatomic,strong) CIImage *inputImage;
+@property (nonatomic,strong) CIImage *inputGaussianBlurredImage;
 
 @end
 
@@ -66,7 +66,7 @@
 
 @interface YUCIHighPassDermabrasionRangeSelectionFilter: CIFilter
 
-@property (nonatomic,retain) CIImage *inputImage;
+@property (nonatomic,strong) CIImage *inputImage;
 
 @end
 
@@ -97,9 +97,9 @@
 
 @interface YUCIHighPassDermabrasionComposeFilter : CIFilter
 
-@property (nonatomic,retain) CIImage *inputImage;
-@property (nonatomic,retain) CIImage *inputMaskImage;
-@property (nonatomic,retain) CIImage *inputRefinedImage;
+@property (nonatomic,strong) CIImage *inputImage;
+@property (nonatomic,strong) CIImage *inputMaskImage;
+@property (nonatomic,strong) CIImage *inputRefinedImage;
 
 @end
 
@@ -125,17 +125,26 @@
 
 @interface YUCIHighPassSkinSmoothingFilter ()
 
+@property (nonatomic,strong) YUCIColorLookupFilter *skinColorLookupFilter;
+
 @end
 
 @implementation YUCIHighPassSkinSmoothingFilter
+
+- (YUCIColorLookupFilter *)skinColorLookupFilter {
+    if (!_skinColorLookupFilter) {
+        _skinColorLookupFilter = [[YUCIColorLookupFilter alloc] init];
+        _skinColorLookupFilter.inputColorLookupTable = [CIImage imageWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"YUCISkinRefineLUT" withExtension:@"png"]];
+    }
+    return _skinColorLookupFilter;
+}
 
 - (CIImage *)outputImage {
     YUCIHighPassDermabrasionRangeSelectionFilter *rangeSelectionFilter = [[YUCIHighPassDermabrasionRangeSelectionFilter alloc] init];
     rangeSelectionFilter.inputImage = self.inputImage;
     
-    YUCIColorLookupFilter *skinColorLookupFilter = [[YUCIColorLookupFilter alloc] init];
+    YUCIColorLookupFilter *skinColorLookupFilter = self.skinColorLookupFilter;
     skinColorLookupFilter.inputImage = self.inputImage;
-    skinColorLookupFilter.inputColorLookupTable = [CIImage imageWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"YUCISkinRefineLUT" withExtension:@"png"]];
     skinColorLookupFilter.inputIntensity = self.inputAmount;
     
     YUCIHighPassDermabrasionComposeFilter *composeFilter = [[YUCIHighPassDermabrasionComposeFilter alloc] init];

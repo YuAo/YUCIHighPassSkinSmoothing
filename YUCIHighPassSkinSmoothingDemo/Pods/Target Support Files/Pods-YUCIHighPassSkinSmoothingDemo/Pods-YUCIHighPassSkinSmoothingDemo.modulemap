@@ -1,0 +1,6 @@
+framework module Pods_YUCIHighPassSkinSmoothingDemo {
+  umbrella header "Pods-YUCIHighPassSkinSmoothingDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

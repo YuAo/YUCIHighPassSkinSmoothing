@@ -1,0 +1,14 @@
+PODS:
+  - YUCIHighPassSkinSmoothing (1.0)
+
+DEPENDENCIES:
+  - YUCIHighPassSkinSmoothing (from `../`)
+
+EXTERNAL SOURCES:
+  YUCIHighPassSkinSmoothing:
+    :path: ../
+
+SPEC CHECKSUMS:
+  YUCIHighPassSkinSmoothing: 3cac1105261e034bbb9364c4ac52e7ad80237282
+
+COCOAPODS: 0.39.0

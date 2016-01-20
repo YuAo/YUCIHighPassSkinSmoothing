@@ -10,9 +10,9 @@
 
 @interface YUCIColorLookupFilter : CIFilter
 
-@property (nonatomic,retain) CIImage *inputImage;
+@property (nonatomic,strong) CIImage *inputImage;
 
-@property (nonatomic,retain) CIImage *inputColorLookupTable;
+@property (nonatomic,strong) CIImage *inputColorLookupTable;
 
 @property (nonatomic,copy) NSNumber *inputIntensity;
 

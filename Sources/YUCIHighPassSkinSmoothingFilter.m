@@ -153,7 +153,7 @@
     composeFilter.inputRefinedImage = skinColorLookupFilter.outputImage;
     
     CIFilter *shapenFilter = [CIFilter filterWithName:@"CISharpenLuminance"];
-    [shapenFilter setValue:@(0.5 * self.inputAmount.floatValue) forKey:@"inputSharpness"];
+    [shapenFilter setValue:@(0.6 * self.inputAmount.floatValue) forKey:@"inputSharpness"];
     
     return composeFilter.outputImage;
 }

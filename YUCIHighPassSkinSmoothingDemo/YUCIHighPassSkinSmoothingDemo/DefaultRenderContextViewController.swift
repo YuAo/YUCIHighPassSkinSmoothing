@@ -10,11 +10,12 @@ import UIKit
 import YUCIHighPassSkinSmoothing
 
 class DefaultRenderContextViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
+    
+    let context = CIContext(options: [kCIContextWorkingColorSpace: CGColorSpaceCreateDeviceRGB()!])
+    let filter = YUCIHighPassSkinSmoothingFilter()
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var amountSlider: UISlider!
-    
-    let filter = YUCIHighPassSkinSmoothingFilter()
 
     var sourceImage: UIImage! {
         didSet {
@@ -57,12 +58,18 @@ class DefaultRenderContextViewController: UIViewController,UIImagePickerControll
         self.filter.inputAmount = self.amountSlider.value
         let outputCIImage = filter.outputImage!
         
-        let colorSpace = CGColorSpaceCreateDeviceRGB()!
-        let context = CIContext(options: [kCIContextWorkingColorSpace: colorSpace])
-        let outputCGImage = context.createCGImage(outputCIImage, fromRect: outputCIImage.extent)
+        let outputCGImage = self.context.createCGImage(outputCIImage, fromRect: outputCIImage.extent)
         let outputUIImage = UIImage(CGImage: outputCGImage, scale: self.sourceImage.scale, orientation: self.sourceImage.imageOrientation)
         
         self.processedImage = outputUIImage
         self.imageView.image = self.processedImage
+    }
+    
+    @IBAction func handleImageViewLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .Began {
+            self.imageView.image = self.sourceImage
+        } else if (sender.state == .Ended || sender.state == .Cancelled) {
+            self.imageView.image = self.processedImage
+        }
     }
 }

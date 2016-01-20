@@ -35,8 +35,8 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
     func drawInMTKView(view: MTKView) {
         let commandBuffer = self.commandQueue.commandBuffer()
         
-        let sourceImage = UIImage(named: "SampleImage")!
-        let inputCIImage = CIImage(CGImage: sourceImage.CGImage!)
+        let texture = YUCIMetalUtilities.textureFormCGImage(UIImage(named: "SampleImage")!.CGImage!, device: self.metalView.device)
+        let inputCIImage = CIImage(MTLTexture: texture, options: nil)
         let filter = YUCIHighPassSkinSmoothingFilter()
         filter.inputImage = inputCIImage
         filter.inputAmount = 0.8
@@ -45,7 +45,7 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
         let cs = CGColorSpaceCreateDeviceRGB()!
         let outputTexture = view.currentDrawable?.texture
         self.context.render(outputCIImage, toMTLTexture: outputTexture!,
-            commandBuffer: nil, bounds: outputCIImage.extent, colorSpace: cs)
+            commandBuffer: commandBuffer, bounds: outputCIImage.extent, colorSpace: cs)
         commandBuffer.presentDrawable(view.currentDrawable!)
         commandBuffer.commit()
     }
@@ -53,7 +53,6 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
     func mtkView(view: MTKView, drawableSizeWillChange size: CGSize) {
         view.draw()
     }
-    
 }
 
 #else

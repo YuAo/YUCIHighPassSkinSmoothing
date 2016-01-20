@@ -14,6 +14,7 @@
 		9D03DDC01C4F5B1500F4D117 /* DefaultRenderContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDBF1C4F5B1500F4D117 /* DefaultRenderContextViewController.swift */; };
 		9D03DDC21C4F5E0000F4D117 /* MetalRenderContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDC11C4F5E0000F4D117 /* MetalRenderContextViewController.swift */; };
 		9D03DDC41C4F717400F4D117 /* OpenGLRenderContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDC31C4F717400F4D117 /* OpenGLRenderContextViewController.swift */; };
+		9D03DDC61C4F81F800F4D117 /* MainTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D03DDC51C4F81F800F4D117 /* MainTableTableViewController.swift */; };
 		CBE18CFEEE8B1EF6ED067FC4 /* Pods_YUCIHighPassSkinSmoothingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460344AF53D957061FB5811B /* Pods_YUCIHighPassSkinSmoothingDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		9D03DDBF1C4F5B1500F4D117 /* DefaultRenderContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRenderContextViewController.swift; sourceTree = "<group>"; };
 		9D03DDC11C4F5E0000F4D117 /* MetalRenderContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalRenderContextViewController.swift; sourceTree = "<group>"; };
 		9D03DDC31C4F717400F4D117 /* OpenGLRenderContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLRenderContextViewController.swift; sourceTree = "<group>"; };
+		9D03DDC51C4F81F800F4D117 /* MainTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				9D03DDAD1C4F520500F4D117 /* AppDelegate.swift */,
+				9D03DDC51C4F81F800F4D117 /* MainTableTableViewController.swift */,
 				9D03DDBF1C4F5B1500F4D117 /* DefaultRenderContextViewController.swift */,
 				9D03DDC31C4F717400F4D117 /* OpenGLRenderContextViewController.swift */,
 				9D03DDC11C4F5E0000F4D117 /* MetalRenderContextViewController.swift */,
@@ -220,6 +223,7 @@
 				9D03DDC01C4F5B1500F4D117 /* DefaultRenderContextViewController.swift in Sources */,
 				9D03DDAE1C4F520500F4D117 /* AppDelegate.swift in Sources */,
 				9D03DDC41C4F717400F4D117 /* OpenGLRenderContextViewController.swift in Sources */,
+				9D03DDC61C4F81F800F4D117 /* MainTableTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

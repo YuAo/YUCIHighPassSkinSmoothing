@@ -18,35 +18,26 @@ class OpenGLRenderContextViewController: GLKViewController {
     
     var glkView: GLKView! { return self.view as! GLKView }
     
-    var image: CIImage!
-    
     var startDate: NSDate = NSDate()
     
     var filter = YUCIHighPassSkinSmoothingFilter()
+    
     var inputCIImage = CIImage(CGImage: UIImage(named: "SampleImage")!.CGImage!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.preferredFramesPerSecond = 60;
-        
         let colorSpace = CGColorSpaceCreateDeviceRGB()!
-
         self.context = EAGLContext(API: .OpenGLES2)
         self.ciContext = CIContext(EAGLContext: self.context, options: [kCIContextWorkingColorSpace: colorSpace])
-        
         self.glkView.context = self.context
-        self.glkView.drawableDepthFormat = .Format24
-        
-        EAGLContext.setCurrentContext(self.context)
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
+        let amount = abs(sin(NSDate().timeIntervalSinceDate(self.startDate)) * 0.8)
+        self.title = String(format: "Input Amount: %.3f", amount)
         self.filter.inputImage = self.inputCIImage
-        self.filter.inputAmount = abs(sin(NSDate().timeIntervalSinceDate(self.startDate)) * 0.8);
+        self.filter.inputAmount = amount
         let outputCIImage = self.filter.outputImage!
-        self.image = outputCIImage
-        
-        self.ciContext.drawImage(self.image, inRect: AVMakeRectWithAspectRatioInsideRect(self.image.extent.size, CGRectApplyAffineTransform(self.view.bounds, CGAffineTransformMakeScale(UIScreen.mainScreen().scale, UIScreen.mainScreen().scale))), fromRect: self.image.extent)
+        self.ciContext.drawImage(outputCIImage, inRect: AVMakeRectWithAspectRatioInsideRect(outputCIImage.extent.size, CGRectApplyAffineTransform(self.view.bounds, CGAffineTransformMakeScale(UIScreen.mainScreen().scale, UIScreen.mainScreen().scale))), fromRect: outputCIImage.extent)
     }
 }

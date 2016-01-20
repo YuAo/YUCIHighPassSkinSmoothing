@@ -1,0 +1,7 @@
+
+kernel vec4 filterKernel(__sample image) {
+    vec4 base = vec4(image.g,image.g,image.g,1.0);
+    vec4 overlay = vec4(image.b,image.b,image.b,1.0);
+    float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);
+    return vec4(ba,ba,ba,1.0);
+}

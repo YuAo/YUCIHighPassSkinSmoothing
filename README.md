@@ -1,2 +1,2 @@
-# HighPassSkinSmoothingFilter
-An implementation of High Pass Skin Smoothing using Apple's Core Image Framework
+# YUCIHighPassSkinSmoothing
+An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie=UTF-8&q=photoshop+high+pass+skin+smoothing) using CoreImage.framework

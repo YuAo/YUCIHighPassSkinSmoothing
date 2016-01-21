@@ -11,9 +11,18 @@ An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie
 
 ![Preview 4](http://yuao.github.io/YUCIHighPassSkinSmoothing/previews/4.jpg)
 
+##Concepts
+
 ##Usage
 
-##How it works
+##Installation
+
+Either clone the repo and manually add the files in `Sources` directory
+
+or if you use Cocoapods, add the following to your Podfile
+
+	pod 'YUCIHighPassSkinSmoothing'
+
 
 ##Contributing
 

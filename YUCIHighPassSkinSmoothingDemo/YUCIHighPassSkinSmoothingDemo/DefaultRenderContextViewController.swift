@@ -56,6 +56,7 @@ class DefaultRenderContextViewController: UIViewController,UIImagePickerControll
     func processImage() {
         self.filter.inputImage = self.inputCIImage
         self.filter.inputAmount = self.amountSlider.value
+        self.filter.inputRadius = 8.0 * self.inputCIImage.extent.width/750.0;
         let outputCIImage = filter.outputImage!
         
         let outputCGImage = self.context.createCGImage(outputCIImage, fromRect: outputCIImage.extent)

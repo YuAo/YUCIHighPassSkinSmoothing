@@ -39,7 +39,8 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
         let inputCIImage = CIImage(MTLTexture: texture, options: nil)
         let filter = YUCIHighPassSkinSmoothingFilter()
         filter.inputImage = inputCIImage
-        filter.inputAmount = 0.8
+        filter.inputAmount = 0.7
+        filter.inputRadius = 8.0 * inputCIImage.extent.width/750.0;
         let outputCIImage = filter.outputImage!
         
         let cs = CGColorSpaceCreateDeviceRGB()!

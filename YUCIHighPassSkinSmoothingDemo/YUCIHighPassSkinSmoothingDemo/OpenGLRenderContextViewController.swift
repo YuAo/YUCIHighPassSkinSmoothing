@@ -33,10 +33,11 @@ class OpenGLRenderContextViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
-        let amount = abs(sin(NSDate().timeIntervalSinceDate(self.startDate)) * 0.8)
+        let amount = abs(sin(NSDate().timeIntervalSinceDate(self.startDate)) * 0.7)
         self.title = String(format: "Input Amount: %.3f", amount)
         self.filter.inputImage = self.inputCIImage
         self.filter.inputAmount = amount
+        self.filter.inputRadius = 8.0 * self.inputCIImage.extent.width/750.0;
         let outputCIImage = self.filter.outputImage!
         self.ciContext.drawImage(outputCIImage, inRect: AVMakeRectWithAspectRatioInsideRect(outputCIImage.extent.size, CGRectApplyAffineTransform(self.view.bounds, CGAffineTransformMakeScale(UIScreen.mainScreen().scale, UIScreen.mainScreen().scale))), fromRect: outputCIImage.extent)
     }

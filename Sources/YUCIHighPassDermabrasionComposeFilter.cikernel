@@ -1,4 +1,0 @@
-
-kernel vec4 filterKernel(__sample image, __sample refinedImage, __sample mask) {
-    return vec4(mix(image.rgb,refinedImage.rgb,1.0 - mask.b),1.0);
-}

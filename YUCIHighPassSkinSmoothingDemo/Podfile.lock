@@ -6,9 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   YUCIHighPassSkinSmoothing:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   YUCIHighPassSkinSmoothing: 3cac1105261e034bbb9364c4ac52e7ad80237282
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: f3eebbea19aa106cb9b554b77c1a6be52842005b
+
+COCOAPODS: 1.0.0.beta.2

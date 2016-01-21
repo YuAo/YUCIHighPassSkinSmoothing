@@ -71,9 +71,7 @@
             toneCurveByteArray[currentCurveIndex * 4 + 2] = fmin(fmax(r + [[self.rgbCompositeCurve objectAtIndex:r] floatValue], 0), 255);
             toneCurveByteArray[currentCurveIndex * 4 + 3] = 255;
         }
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CIImage *toneCurveTexture = [CIImage imageWithBitmapData:[NSData dataWithBytesNoCopy:toneCurveByteArray length:256 * 4 * sizeof(uint8_t) freeWhenDone:YES] bytesPerRow:256 * 4 * sizeof(uint8_t) size:CGSizeMake(256, 1) format:kCIFormatBGRA8 colorSpace:colorSpace];
-        CGColorSpaceRelease(colorSpace);
+        CIImage *toneCurveTexture = [CIImage imageWithBitmapData:[NSData dataWithBytesNoCopy:toneCurveByteArray length:256 * 4 * sizeof(uint8_t) freeWhenDone:YES] bytesPerRow:256 * 4 * sizeof(uint8_t) size:CGSizeMake(256, 1) format:kCIFormatBGRA8 colorSpace:nil];
         self.toneCurveTexture = toneCurveTexture;
     }
 }

@@ -28,4 +28,10 @@ or if you use Cocoapods, add the following to your Podfile
 
 ##Credits
 
+Thanks a lot to Yien Ma [https://dribbble.com/yien](https://dribbble.com/yien) for providing a lot of suggestions and fine-tunings to the procedure.
+
 ##License
+
+YUCIHighPassSkinSmoothing is MIT-licensed. See [LICENSE](https://github.com/YuAo/YUCIHighPassSkinSmoothing/blob/master/LICENSE) file for detail.
+
+Copyright (c) 2016 Yu Ao

@@ -13,6 +13,10 @@ An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie
 
 ##Concepts
 
+##Consideration
+
+For best effect, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.
+
 ##Usage
 
 ##Installation
@@ -23,15 +27,12 @@ or if you use Cocoapods, add the following to your Podfile
 
 	pod 'YUCIHighPassSkinSmoothing'
 
-
-##Contributing
-
 ##Credits
 
-Thanks a lot to Yien Ma [https://dribbble.com/yien](https://dribbble.com/yien) for providing a lot of suggestions and fine-tunings to the procedure.
+Thanks a lot to [Yien Ma](https://dribbble.com/yien) for providing a lot of suggestions and fine-tunings to the procedure.
 
 ##License
 
 YUCIHighPassSkinSmoothing is MIT-licensed. See [LICENSE](https://github.com/YuAo/YUCIHighPassSkinSmoothing/blob/master/LICENSE) file for detail.
 
-Copyright (c) 2016 Yu Ao
+Copyright © 2016 Yu Ao

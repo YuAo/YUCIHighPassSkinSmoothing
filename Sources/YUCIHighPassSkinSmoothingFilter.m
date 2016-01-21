@@ -8,6 +8,7 @@
 
 #import "YUCIHighPassSkinSmoothingFilter.h"
 #import "YUCIColorLookupFilter.h"
+#import "YUCIRGBToneCurveFilter.h"
 
 #pragma mark - YUCIGreenBlueChannelOverlayBlendFilter
 
@@ -97,31 +98,33 @@
 
 @interface YUCIHighPassSkinSmoothingFilter ()
 
-@property (nonatomic,strong) YUCIColorLookupFilter *skinColorLookupFilter;
+@property (nonatomic,strong) YUCIRGBToneCurveFilter *skinToneCurveFilter;
 
 @end
 
 @implementation YUCIHighPassSkinSmoothingFilter
 
-- (YUCIColorLookupFilter *)skinColorLookupFilter {
-    if (!_skinColorLookupFilter) {
-        _skinColorLookupFilter = [[YUCIColorLookupFilter alloc] init];
-        _skinColorLookupFilter.inputColorLookupTable = [CIImage imageWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"YUCISkinRefineLUT" withExtension:@"png"]];
+- (YUCIRGBToneCurveFilter *)skinToneCurveFilter {
+    if (!_skinToneCurveFilter) {
+        _skinToneCurveFilter = [[YUCIRGBToneCurveFilter alloc] init];
+        _skinToneCurveFilter.rgbCompositeControlPoints = @[[CIVector vectorWithX:0 Y:0],
+                                                           [CIVector vectorWithX:120/255.0 Y:146/255.0],
+                                                           [CIVector vectorWithX:1.0 Y:1.0]];
     }
-    return _skinColorLookupFilter;
+    return _skinToneCurveFilter;
 }
 
 - (CIImage *)outputImage {
     YUCIHighPassDermabrasionRangeSelectionFilter *rangeSelectionFilter = [[YUCIHighPassDermabrasionRangeSelectionFilter alloc] init];
     rangeSelectionFilter.inputImage = self.inputImage;
     
-    YUCIColorLookupFilter *skinColorLookupFilter = self.skinColorLookupFilter;
-    skinColorLookupFilter.inputImage = self.inputImage;
-    skinColorLookupFilter.inputIntensity = self.inputAmount;
+    YUCIRGBToneCurveFilter *skinToneCurveFilter = self.skinToneCurveFilter;
+    skinToneCurveFilter.inputImage = self.inputImage;
+    skinToneCurveFilter.inputIntensity = self.inputAmount;
     
     CIFilter *blendWithMaskFilter = [CIFilter filterWithName:@"CIBlendWithMask"];
     [blendWithMaskFilter setValue:self.inputImage forKey:kCIInputImageKey];
-    [blendWithMaskFilter setValue:skinColorLookupFilter.outputImage forKey:kCIInputBackgroundImageKey];
+    [blendWithMaskFilter setValue:skinToneCurveFilter.outputImage forKey:kCIInputBackgroundImageKey];
     [blendWithMaskFilter setValue:rangeSelectionFilter.outputImage forKey:kCIInputMaskImageKey];
     
     CIFilter *shapenFilter = [CIFilter filterWithName:@"CISharpenLuminance"];

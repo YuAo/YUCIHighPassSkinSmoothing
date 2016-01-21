@@ -1,0 +1,8 @@
+
+kernel vec4 filterKernel(sampler inputImage, sampler toneCurveTexture, float intensity) {
+    vec4 textureColor = sample(inputImage,samplerCoord(inputImage));
+    float redCurveValue = sample(toneCurveTexture, vec2(textureColor.r, 0.0)).r;
+    float greenCurveValue = sample(toneCurveTexture, vec2(textureColor.g, 0.0)).g;
+    float blueCurveValue = sample(toneCurveTexture, vec2(textureColor.b, 0.0)).b;
+    return vec4(mix(textureColor.rgb,vec3(redCurveValue, greenCurveValue, blueCurveValue),intensity),textureColor.a);
+}

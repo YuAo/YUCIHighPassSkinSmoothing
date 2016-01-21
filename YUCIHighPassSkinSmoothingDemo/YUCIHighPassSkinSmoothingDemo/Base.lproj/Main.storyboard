@@ -108,7 +108,7 @@
                                     <outletCollection property="gestureRecognizers" destination="7IU-G1-a3u" appends="YES" id="MN6-PF-Cck"/>
                                 </connections>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.69999999999999996" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OVf-A9-zeH">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.80000000000000004" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OVf-A9-zeH">
                                 <rect key="frame" x="42" y="562" width="516" height="31"/>
                                 <connections>
                                     <action selector="amountSliderTouchUp:" destination="BPH-5N-Fqj" eventType="touchUpInside" id="BFU-ug-iSN"/>

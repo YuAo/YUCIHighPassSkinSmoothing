@@ -69,6 +69,8 @@
 
 @property (nonatomic,strong) CIImage *inputImage;
 
+@property (nonatomic,copy) NSNumber *inputRadius;
+
 @end
 
 @implementation YUCIHighPassDermabrasionRangeSelectionFilter
@@ -82,7 +84,7 @@
     channelOverlayFilter.inputImage = exposureFilter.outputImage;
     
     CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [blurFilter setValue:@(8.0 * self.inputImage.extent.size.width/750.0) forKey:kCIInputRadiusKey];
+    [blurFilter setValue:self.inputRadius forKey:kCIInputRadiusKey];
     [blurFilter setValue:channelOverlayFilter.outputImage forKey:kCIInputImageKey];
     
     YUCIDermabrasionGaussianHighPassWithHardLightFilter *highpassWithHardLightFilter = [[YUCIDermabrasionGaussianHighPassWithHardLightFilter alloc] init];
@@ -114,8 +116,17 @@
     return _skinToneCurveFilter;
 }
 
+- (void)setInputToneCurveControlPoints:(NSArray<CIVector *> *)inputToneCurveControlPoints {
+    self.skinToneCurveFilter.rgbCompositeControlPoints = inputToneCurveControlPoints;
+}
+
+- (NSArray<CIVector *> *)inputToneCurveControlPoints {
+    return self.skinToneCurveFilter.rgbCompositeControlPoints;
+}
+
 - (CIImage *)outputImage {
     YUCIHighPassDermabrasionRangeSelectionFilter *rangeSelectionFilter = [[YUCIHighPassDermabrasionRangeSelectionFilter alloc] init];
+    rangeSelectionFilter.inputRadius = self.inputRadius ?: @(8.0);
     rangeSelectionFilter.inputImage = self.inputImage;
     
     YUCIRGBToneCurveFilter *skinToneCurveFilter = self.skinToneCurveFilter;

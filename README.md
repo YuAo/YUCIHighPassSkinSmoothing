@@ -11,6 +11,8 @@ An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie
 
 ![Preview 4](http://yuao.github.io/YUCIHighPassSkinSmoothing/previews/4.jpg)
 
+##Performance
+
 ##Concepts
 
 ##Consideration

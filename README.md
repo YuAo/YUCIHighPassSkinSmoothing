@@ -34,6 +34,17 @@ The basic routine of `YUCIHighPassSkinSmoothingFilter` can be described with the
 
 ####Basic Concept
 
+The main theory behind `High Pass Skin Smoothing` is `Frequency Separation`.
+
+Frequency separation allows us to split up the tones and colors of a image from its more detailed textures, because a digital image can be interpreted as different frequencies represented as sine waves.
+
+> High frequencies in an image will contain information about fine details, such as skin pores, hair, fine lines, skin imperfections.
+
+> Low frequencies are the image data that contains information about volume, tone and color transitions. In other words: shadows and light areas, colors and tones.
+
+> https://fstoppers.com/post-production/ultimate-guide-frequency-separation-technique-8699
+
+By using `High Pass` filter, we separate the image into high and low spatial frequencies. Then we will be able to smoothing the image while preseving a fine level of detail by applying adjustments to certain frequencies of the image.
 
 ####The High Pass Filter
 
@@ -49,7 +60,7 @@ highpass.rgb = image.rgb - gaussianBlurredImage.rgb + vec3(0.5,0.5,0.5)
 
 `inputControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
 
-`inputRadius`: A number value that controls the radius (in pixel) of `High Pass` filter. The default value of this parameter is `8.0`.
+`inputRadius`: A number value that controls the radius (in pixel) of `High Pass` filter. The default value of this parameter is `8.0`. Try adjusting this value according to the resolution of the input image and the level of detail you want to preserve.
 
 ####Tweaks
 

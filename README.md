@@ -30,20 +30,32 @@ Device: iPhone 5  / FPS: ~24
 
 The basic routine of `YUCIHighPassSkinSmoothingFilter` can be described with the following diagram.
 
-You may want to google [High Pass Skin Smoothing](https://www.google.com/search?ie=UTF-8&q=photoshop+high+pass+skin+smoothing) and do the steps in Photoshop or any other image editing software you prefer first before trying to understand the diagram below.
-
 [![Routine](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)
+
+####Basic Concept
+
 
 ####The High Pass Filter
 
 There's no `High Pass` filter in CoreImage. Luckily it's not hard to create one (`Photoshop: High Pass` section in the diagram):
 
-> A high-pass filter, if the imaging software does not have one, can be done by duplicating the layer, putting a gaussian blur, inverting, and then blending with the original layer using an opacity (say 50%) with the original layer.
-> https://en.wikipedia.org/wiki/High-pass_filter
+```
+highpass.rgb = image.rgb - gaussianBlurredImage.rgb + vec3(0.5,0.5,0.5)
+```
 
 ####Input Parameters
 
+`inputAmount`: A number value that controls the intensity of the `Curve Adjustment` step and the sharpness of the final `Sharpen` step. You use this value to control the overall filter strength. Valid from `0` to `1.0`. The default value is `1.0`.
 
+`inputControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
+
+`inputRadius`: A number value that controls the radius (in pixel) of `High Pass` filter. The default value of this parameter is `8.0`.
+
+####Tweaks
+
+Besides the steps in the diagram, `YUCIHighPassSkinSmoothing` actually has two more steps.
+
+The exposure of the input image is decreased by 1 EV before being sent to the `Mask Generating Routine` (in `-[YUCIHighPassDermabrasionRangeSelectionFilter outputImage]` method) and a RGB curve adjustment is added to the mask at the end of `Mask Generating Routine` (at the end of `YUCIDermabrasionHardLightFilter.cikernel`).
 
 ##Consideration
 
@@ -51,7 +63,7 @@ For the best effect, you need to create the `CIContext` object with a sRGB worki
 
 ##Usage
 
-Just use the `YUCIHighPassSkinSmoothingFilter` class.
+Just use the `YUCIHighPassSkinSmoothingFilter`.
 
 ##Installation
 

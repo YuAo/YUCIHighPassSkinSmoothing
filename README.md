@@ -28,15 +28,30 @@ Device: iPhone 5  / FPS: ~24
 
 ##Concepts
 
-The basic concept/routine of `YUCIHighPassSkinSmoothingFilter` can be described with the following diagram.
+The basic routine of `YUCIHighPassSkinSmoothingFilter` can be described with the following diagram.
+
+You may want to google [High Pass Skin Smoothing](https://www.google.com/search?ie=UTF-8&q=photoshop+high+pass+skin+smoothing) and do the steps in Photoshop or any other image editing software you prefer first before trying to understand the diagram below.
 
 [![Routine](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)
 
+####The High Pass Filter
+
+There's no `High Pass` filter in CoreImage. Luckily it's not hard to create one (`Photoshop: High Pass` section in the diagram):
+
+> A high-pass filter, if the imaging software does not have one, can be done by duplicating the layer, putting a gaussian blur, inverting, and then blending with the original layer using an opacity (say 50%) with the original layer.
+> https://en.wikipedia.org/wiki/High-pass_filter
+
+####Input Parameters
+
+
+
 ##Consideration
 
-For best effect, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.
+For the best effect, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.
 
 ##Usage
+
+Just use the `YUCIHighPassSkinSmoothingFilter` class.
 
 ##Installation
 

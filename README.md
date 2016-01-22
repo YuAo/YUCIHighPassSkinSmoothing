@@ -15,6 +15,10 @@ An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie
 
 ##Concepts
 
+The basic concept/routine of `YUCIHighPassSkinSmoothingFilter` can be described with the following diagram.
+
+[![Routine](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)
+
 ##Consideration
 
 For best effect, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.

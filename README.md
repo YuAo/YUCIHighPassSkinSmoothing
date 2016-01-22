@@ -13,6 +13,19 @@ An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie
 
 ##Performance
 
+Tests are made in Instruments with the "OpenGL ES Analysis" template. 
+
+The `CIContext` object is created with `EAGLContext` and a sRGB working color space (`CGColorSpaceCreateDeviceRGB()`).
+
+```
+Image Size: 640 x 800
+Input Radius: 7.0
+Operation System: iOS 9
+
+Device: iPhone 5s / FPS: 60
+Device: iPhone 5  / FPS: ~24
+```
+
 ##Concepts
 
 The basic concept/routine of `YUCIHighPassSkinSmoothingFilter` can be described with the following diagram.

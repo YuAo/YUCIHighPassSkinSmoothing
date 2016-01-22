@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 #import "YUCIColorLookupFilter.h"
+#import "YUCIHighPassFilter.h"
 #import "YUCIHighPassSkinSmoothingFilter.h"
 #import "YUCIMetalUtilities.h"
 #import "YUCIRGBToneCurveFilter.h"

@@ -7,25 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17AD774C7A599393A5CDDFD22B5C83BC /* YUCIHighPassSkinSmoothingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F62684413044D2166112889B8F03AAD1 /* YUCIHighPassSkinSmoothingFilter.m */; };
-		2BB49960B8BC4240D591EB5CE265370F /* YUCIHighPassSkinSmoothing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB667172EAFFC38B8B95709EA3CA72CA /* YUCIHighPassSkinSmoothing-dummy.m */; };
-		2E2DCD7FC9441CDF6831904522F782A9 /* YUCIMetalUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B922C937091C9289E3A2DEB13CBD094A /* YUCIMetalUtilities.m */; };
-		3067A20A13076364656E9B2EE78520E4 /* YUCIHighPassSkinSmoothingFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = F1BBF00E87CC8803B8F2D8770E666C13 /* YUCIHighPassSkinSmoothingFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		369768231F61BB1D48688A229FCEBE01 /* YUCIColorLookupFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F5E68E2308D3263B652E774C27A95E /* YUCIColorLookupFilter.m */; };
-		462C10B598AB44DA6AED2DB519B12491 /* YUCIDermabrasionGaussianHighPassWithHardLightFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = A575EC17D30895D2A9240F9C0FF81FD4 /* YUCIDermabrasionGaussianHighPassWithHardLightFilter.cikernel */; };
-		49FA153351D3713CC9FC8E69441CBD2A /* YUCIColorLookupTableDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = EC758CA182F235131EAB7E9356705807 /* YUCIColorLookupTableDefault.png */; };
-		4FFC9A32BD29D9A65283E7AD06ED96BE /* YUCIHighPassSkinSmoothing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA45850CA45DFAAC2F77CCCF72D77C01 /* YUCIHighPassSkinSmoothing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5712C5166BD020E562A11AD2E7048833 /* YUCIMetalUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EC6E5EC0B56BE70EDF8D6CC3E7BFD2 /* YUCIMetalUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		571A97DE866E2DA8A8D99104D7801AC9 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 57317F89A16F3F2711421DDCF42B233E /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel */; };
+		04C541906D9C6B57FA1E2BB779311B01 /* YUCIColorLookupFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F94CEA60EE462EA1860914E4E6876E /* YUCIColorLookupFilter.m */; };
+		067D6DD7CBBD1BC74BBF96ACC8D888D3 /* YUCIHighPassSkinSmoothing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FAF40146CD218CBB2566EE7FAEC81F4D /* YUCIHighPassSkinSmoothing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		128D6FB2344E7D55E6C2FAFAF0AD146C /* YUCIColorLookupFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = D580CEA0D370FC0276FF3DC175BFABB0 /* YUCIColorLookupFilter.cikernel */; };
+		3A1AC8569B0674D4030847C5C817508C /* YUCIColorLookupTableDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BA706C4A17FF0ACD54828360858725 /* YUCIColorLookupTableDefault.png */; };
+		4F9B1592F0ECC9B8A05DEF02C060CD10 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 931A3ECBBC0A0FDCC1E64A27D33066E7 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel */; };
+		4FC4A9F2015CAB77C733B195842B0FCC /* YUCIDermabrasionHardLightFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = C7CA4FE683C9B23DEAA46077C0DA9486 /* YUCIDermabrasionHardLightFilter.cikernel */; };
+		53CE7D2B7D6EF4D6D762E6D20FC5995A /* YUCIHighPassSkinSmoothingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B00952A1F822ABF6530E50EED7871877 /* YUCIHighPassSkinSmoothingFilter.m */; };
+		54446EB0BFE9048D204D0A74FC9D4EC4 /* YUCIMetalUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = C57523810A235F447101CA906A43B094 /* YUCIMetalUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		633442E1087D80D07EC90CC43CF3F480 /* YUCIRGBToneCurveFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 02F349625197CD77EDB36E476DC2C653 /* YUCIRGBToneCurveFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6663E0C67C473465CA62298E8DA371C4 /* YUCIRGBToneCurveFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 47409F10327BB0360876A208C72F5EDC /* YUCIRGBToneCurveFilter.cikernel */; };
 		6AD3008940C4CAE231BB8E8D0E6AB747 /* Pods-YUCIHighPassSkinSmoothingDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC1B6CDE234FF6619DDB934ABC0C27 /* Pods-YUCIHighPassSkinSmoothingDemo-dummy.m */; };
+		7A960B7688511FD8EC53BFE11FC5D070 /* YUCIRGBToneCurveFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2955C27A66EB46ABFF859E9733EF02CD /* YUCIRGBToneCurveFilter.m */; };
+		8130718895C7B96A99AF9A8001BC12E9 /* YUCIMetalUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BA06B383761883BA2E493F7BB9BBA0E6 /* YUCIMetalUtilities.m */; };
 		844B41CF5FC09CF3DA208ED745436A35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		90C08AEA10289784A9E67EEF1C37F94F /* YUCIHighPassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D89917889AA9EC10D1A08F19C4CCFC05 /* YUCIHighPassFilter.m */; };
+		954F40B2200994D3C25843A0BF5AAAD8 /* YUCIHighPassFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 1461E9E12FE897514F240AB71C0914F8 /* YUCIHighPassFilter.cikernel */; };
 		97C9C8C987DDAC0EB5DD3680C4DCCEB4 /* Pods-YUCIHighPassSkinSmoothingDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 283A4D46D640E79803B9AB3D5436110E /* Pods-YUCIHighPassSkinSmoothingDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A90490A023E2B3952CA20B2E53B7CA64 /* YUCIColorLookupFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 0D7C03136EBB236A8E7BFA62BDEF243A /* YUCIColorLookupFilter.cikernel */; };
-		AAAB6156DE6B0A3BE6496A6DA76CD888 /* YUCIRGBToneCurveFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 463C3A8EE67CA3C06B858B81EF05EC32 /* YUCIRGBToneCurveFilter.m */; };
-		BA5D6D26AA2138F171D3FBD10516BD54 /* YUCIColorLookupFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADFD72F1D6454DB26EE6C18953AD103 /* YUCIColorLookupFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1142B00C71A19159E50C00FDA373DA9 /* YUCIRGBToneCurveFilter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = F90FEA9B96678F8650F963F6AEF2BDED /* YUCIRGBToneCurveFilter.cikernel */; };
+		A7E7DFFA496619BBF2CEB8F869FDCA37 /* YUCIHighPassSkinSmoothingFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E128E5548303AA3D9FE9797C7C72EEE /* YUCIHighPassSkinSmoothingFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B37BED4CF2944B3EDBBD0854BA82B466 /* YUCIHighPassSkinSmoothing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F4178EA976B3ED8286266C837C3B9 /* YUCIHighPassSkinSmoothing-dummy.m */; };
 		E1A0D4BE343D3953A62187E46FAA90D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		F771D385D1772736820C97FA5B30B709 /* YUCIRGBToneCurveFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 114495AC5B2E92D0452645E72FA16A8E /* YUCIRGBToneCurveFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E667DF41A480559AFEED82FFCE6CDB2D /* YUCIColorLookupFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F764F1DEC3E3599FDCAB595D97173B /* YUCIColorLookupFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E96C51E9E5BE96F84D59AF5443EE205F /* YUCIHighPassFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 63A3EC4DE8ABD770FD55AE0A4CB8D6B7 /* YUCIHighPassFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,39 +42,42 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D7C03136EBB236A8E7BFA62BDEF243A /* YUCIColorLookupFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIColorLookupFilter.cikernel; sourceTree = "<group>"; };
-		114495AC5B2E92D0452645E72FA16A8E /* YUCIRGBToneCurveFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIRGBToneCurveFilter.h; sourceTree = "<group>"; };
+		02F349625197CD77EDB36E476DC2C653 /* YUCIRGBToneCurveFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIRGBToneCurveFilter.h; sourceTree = "<group>"; };
+		1461E9E12FE897514F240AB71C0914F8 /* YUCIHighPassFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIHighPassFilter.cikernel; sourceTree = "<group>"; };
 		16E40C541FF7A82AB730FDC12B50799D /* Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YUCIHighPassSkinSmoothingDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		24F764F1DEC3E3599FDCAB595D97173B /* YUCIColorLookupFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIColorLookupFilter.h; sourceTree = "<group>"; };
+		26ADA5CF494255F1A5CD985026C3D4F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		283A4D46D640E79803B9AB3D5436110E /* Pods-YUCIHighPassSkinSmoothingDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YUCIHighPassSkinSmoothingDemo-umbrella.h"; sourceTree = "<group>"; };
+		2955C27A66EB46ABFF859E9733EF02CD /* YUCIRGBToneCurveFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurveFilter.m; sourceTree = "<group>"; };
 		2B9F168D8197478776AB493DA3117AEF /* Pods_YUCIHighPassSkinSmoothingDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YUCIHighPassSkinSmoothingDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3EE64D57224A1111DC9A036B0DA8C0AA /* YUCIHighPassSkinSmoothing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = YUCIHighPassSkinSmoothing.modulemap; sourceTree = "<group>"; };
 		41C2A84EF9F0E56F3CB02EF373ABCF51 /* Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YUCIHighPassSkinSmoothingDemo.release.xcconfig"; sourceTree = "<group>"; };
-		463C3A8EE67CA3C06B858B81EF05EC32 /* YUCIRGBToneCurveFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurveFilter.m; sourceTree = "<group>"; };
+		42332C51F166350F4C8B1116A83AD2A3 /* YUCIHighPassSkinSmoothing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YUCIHighPassSkinSmoothing.xcconfig; sourceTree = "<group>"; };
+		47409F10327BB0360876A208C72F5EDC /* YUCIRGBToneCurveFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIRGBToneCurveFilter.cikernel; sourceTree = "<group>"; };
 		5583C1B7E21ECEAFED25CA443BB2C1F5 /* Pods-YUCIHighPassSkinSmoothingDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YUCIHighPassSkinSmoothingDemo-frameworks.sh"; sourceTree = "<group>"; };
-		57317F89A16F3F2711421DDCF42B233E /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIGreenBlueChannelOverlayBlendFilter.cikernel; sourceTree = "<group>"; };
+		55F94CEA60EE462EA1860914E4E6876E /* YUCIColorLookupFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIColorLookupFilter.m; sourceTree = "<group>"; };
 		593F2B1F70AA1C772D6CF82582B007D3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EDC1B6CDE234FF6619DDB934ABC0C27 /* Pods-YUCIHighPassSkinSmoothingDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YUCIHighPassSkinSmoothingDemo-dummy.m"; sourceTree = "<group>"; };
-		7174E0A5779D8430D359D0AF262D0D21 /* YUCIHighPassSkinSmoothing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YUCIHighPassSkinSmoothing-prefix.pch"; sourceTree = "<group>"; };
-		80D2AD3C6319989E0664749F5BAEDF6F /* YUCIHighPassSkinSmoothing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YUCIHighPassSkinSmoothing.xcconfig; sourceTree = "<group>"; };
-		81EC6E5EC0B56BE70EDF8D6CC3E7BFD2 /* YUCIMetalUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIMetalUtilities.h; sourceTree = "<group>"; };
-		95F5E68E2308D3263B652E774C27A95E /* YUCIColorLookupFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIColorLookupFilter.m; sourceTree = "<group>"; };
-		9ADFD72F1D6454DB26EE6C18953AD103 /* YUCIColorLookupFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIColorLookupFilter.h; sourceTree = "<group>"; };
+		63A3EC4DE8ABD770FD55AE0A4CB8D6B7 /* YUCIHighPassFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIHighPassFilter.h; sourceTree = "<group>"; };
+		7E128E5548303AA3D9FE9797C7C72EEE /* YUCIHighPassSkinSmoothingFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIHighPassSkinSmoothingFilter.h; sourceTree = "<group>"; };
+		931A3ECBBC0A0FDCC1E64A27D33066E7 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIGreenBlueChannelOverlayBlendFilter.cikernel; sourceTree = "<group>"; };
+		98B04157A2BEFF6CCC6F5DEE55D6B12A /* YUCIHighPassSkinSmoothing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YUCIHighPassSkinSmoothing-prefix.pch"; sourceTree = "<group>"; };
 		9C7068EB32C49456C5CBEC4B6415A81E /* YUCIHighPassSkinSmoothing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YUCIHighPassSkinSmoothing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E0A6A7F04C81420DB3DF265DD229BCD /* Pods-YUCIHighPassSkinSmoothingDemo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-YUCIHighPassSkinSmoothingDemo-resources.sh"; sourceTree = "<group>"; };
-		A575EC17D30895D2A9240F9C0FF81FD4 /* YUCIDermabrasionGaussianHighPassWithHardLightFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIDermabrasionGaussianHighPassWithHardLightFilter.cikernel; sourceTree = "<group>"; };
-		B922C937091C9289E3A2DEB13CBD094A /* YUCIMetalUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIMetalUtilities.m; sourceTree = "<group>"; };
-		BA45850CA45DFAAC2F77CCCF72D77C01 /* YUCIHighPassSkinSmoothing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YUCIHighPassSkinSmoothing-umbrella.h"; sourceTree = "<group>"; };
+		B00952A1F822ABF6530E50EED7871877 /* YUCIHighPassSkinSmoothingFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPassSkinSmoothingFilter.m; sourceTree = "<group>"; };
+		BA06B383761883BA2E493F7BB9BBA0E6 /* YUCIMetalUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIMetalUtilities.m; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C2862909C1FC1E5E646BF847052BA077 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C57523810A235F447101CA906A43B094 /* YUCIMetalUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIMetalUtilities.h; sourceTree = "<group>"; };
+		C7CA4FE683C9B23DEAA46077C0DA9486 /* YUCIDermabrasionHardLightFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIDermabrasionHardLightFilter.cikernel; sourceTree = "<group>"; };
 		C99AE407E370A7683BEA2C05B6A79650 /* Pods-YUCIHighPassSkinSmoothingDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-YUCIHighPassSkinSmoothingDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D3BA706C4A17FF0ACD54828360858725 /* YUCIColorLookupTableDefault.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = YUCIColorLookupTableDefault.png; sourceTree = "<group>"; };
+		D580CEA0D370FC0276FF3DC175BFABB0 /* YUCIColorLookupFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIColorLookupFilter.cikernel; sourceTree = "<group>"; };
 		D70EDC25C67E165AFF8F7D4FA127D9FE /* Pods-YUCIHighPassSkinSmoothingDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-YUCIHighPassSkinSmoothingDemo.modulemap"; sourceTree = "<group>"; };
-		DB667172EAFFC38B8B95709EA3CA72CA /* YUCIHighPassSkinSmoothing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YUCIHighPassSkinSmoothing-dummy.m"; sourceTree = "<group>"; };
-		EC758CA182F235131EAB7E9356705807 /* YUCIColorLookupTableDefault.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = YUCIColorLookupTableDefault.png; sourceTree = "<group>"; };
-		F1BBF00E87CC8803B8F2D8770E666C13 /* YUCIHighPassSkinSmoothingFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YUCIHighPassSkinSmoothingFilter.h; sourceTree = "<group>"; };
+		D89917889AA9EC10D1A08F19C4CCFC05 /* YUCIHighPassFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPassFilter.m; sourceTree = "<group>"; };
 		F39CAF8DDD8E71F31AD7A3622AEBF5D4 /* Pods-YUCIHighPassSkinSmoothingDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-YUCIHighPassSkinSmoothingDemo-acknowledgements.plist"; sourceTree = "<group>"; };
-		F62684413044D2166112889B8F03AAD1 /* YUCIHighPassSkinSmoothingFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPassSkinSmoothingFilter.m; sourceTree = "<group>"; };
-		F90FEA9B96678F8650F963F6AEF2BDED /* YUCIRGBToneCurveFilter.cikernel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = YUCIRGBToneCurveFilter.cikernel; sourceTree = "<group>"; };
-		FAC4CB3349A787EFBAD69E2685EEC26F /* YUCIHighPassSkinSmoothing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = YUCIHighPassSkinSmoothing.modulemap; sourceTree = "<group>"; };
+		F64F4178EA976B3ED8286266C837C3B9 /* YUCIHighPassSkinSmoothing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YUCIHighPassSkinSmoothing-dummy.m"; sourceTree = "<group>"; };
+		FAF40146CD218CBB2566EE7FAEC81F4D /* YUCIHighPassSkinSmoothing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YUCIHighPassSkinSmoothing-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,16 +108,12 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		33B5C55DBBDF0B66915DF363C4D6CC94 /* Sources */ = {
+		4D8064EE7BC331BC5F20CD3A3ED688E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0D7C03136EBB236A8E7BFA62BDEF243A /* YUCIColorLookupFilter.cikernel */,
-				EC758CA182F235131EAB7E9356705807 /* YUCIColorLookupTableDefault.png */,
-				A575EC17D30895D2A9240F9C0FF81FD4 /* YUCIDermabrasionGaussianHighPassWithHardLightFilter.cikernel */,
-				57317F89A16F3F2711421DDCF42B233E /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel */,
-				F90FEA9B96678F8650F963F6AEF2BDED /* YUCIRGBToneCurveFilter.cikernel */,
+				5D6613A4A4AFBBB32EF7D7D188AD2A71 /* Sources */,
 			);
-			path = Sources;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		535973FC6104C9187F2CB8EAC3E1AA30 /* Products */ = {
@@ -123,17 +125,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5CC0525DEF4B4C777EE1FEC4DDC3386C /* Sources */ = {
+		5D6613A4A4AFBBB32EF7D7D188AD2A71 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9ADFD72F1D6454DB26EE6C18953AD103 /* YUCIColorLookupFilter.h */,
-				95F5E68E2308D3263B652E774C27A95E /* YUCIColorLookupFilter.m */,
-				F1BBF00E87CC8803B8F2D8770E666C13 /* YUCIHighPassSkinSmoothingFilter.h */,
-				F62684413044D2166112889B8F03AAD1 /* YUCIHighPassSkinSmoothingFilter.m */,
-				81EC6E5EC0B56BE70EDF8D6CC3E7BFD2 /* YUCIMetalUtilities.h */,
-				B922C937091C9289E3A2DEB13CBD094A /* YUCIMetalUtilities.m */,
-				114495AC5B2E92D0452645E72FA16A8E /* YUCIRGBToneCurveFilter.h */,
-				463C3A8EE67CA3C06B858B81EF05EC32 /* YUCIRGBToneCurveFilter.m */,
+				D580CEA0D370FC0276FF3DC175BFABB0 /* YUCIColorLookupFilter.cikernel */,
+				D3BA706C4A17FF0ACD54828360858725 /* YUCIColorLookupTableDefault.png */,
+				C7CA4FE683C9B23DEAA46077C0DA9486 /* YUCIDermabrasionHardLightFilter.cikernel */,
+				931A3ECBBC0A0FDCC1E64A27D33066E7 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel */,
+				1461E9E12FE897514F240AB71C0914F8 /* YUCIHighPassFilter.cikernel */,
+				47409F10327BB0360876A208C72F5EDC /* YUCIRGBToneCurveFilter.cikernel */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -146,6 +146,17 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		7542D76943EAC5BEE3A406F3C08408C9 /* YUCIHighPassSkinSmoothing */ = {
+			isa = PBXGroup;
+			children = (
+				4D8064EE7BC331BC5F20CD3A3ED688E5 /* Resources */,
+				EAA7D55C8CAAF9FBEA2B529D1390777F /* Sources */,
+				C5717E1854150C356394B7E170AAF305 /* Support Files */,
+			);
+			name = YUCIHighPassSkinSmoothing;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -155,17 +166,6 @@
 				535973FC6104C9187F2CB8EAC3E1AA30 /* Products */,
 				60B54B9132D58B505D8444AA86C65FA9 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		97287060D543061FC8B403C78EE7D9D2 /* YUCIHighPassSkinSmoothing */ = {
-			isa = PBXGroup;
-			children = (
-				C176B96117A7B7E8B335B0991E158014 /* Resources */,
-				5CC0525DEF4B4C777EE1FEC4DDC3386C /* Sources */,
-				F0AE8FD5D0C728D07692BD40A3A7A67A /* Support Files */,
-			);
-			name = YUCIHighPassSkinSmoothing;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		A7A400F0BEE50A3E602D315FC41DC88C /* Pods-YUCIHighPassSkinSmoothingDemo */ = {
@@ -194,32 +194,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C176B96117A7B7E8B335B0991E158014 /* Resources */ = {
+		C5717E1854150C356394B7E170AAF305 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				33B5C55DBBDF0B66915DF363C4D6CC94 /* Sources */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		F0AE8FD5D0C728D07692BD40A3A7A67A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				C2862909C1FC1E5E646BF847052BA077 /* Info.plist */,
-				FAC4CB3349A787EFBAD69E2685EEC26F /* YUCIHighPassSkinSmoothing.modulemap */,
-				80D2AD3C6319989E0664749F5BAEDF6F /* YUCIHighPassSkinSmoothing.xcconfig */,
-				DB667172EAFFC38B8B95709EA3CA72CA /* YUCIHighPassSkinSmoothing-dummy.m */,
-				7174E0A5779D8430D359D0AF262D0D21 /* YUCIHighPassSkinSmoothing-prefix.pch */,
-				BA45850CA45DFAAC2F77CCCF72D77C01 /* YUCIHighPassSkinSmoothing-umbrella.h */,
+				26ADA5CF494255F1A5CD985026C3D4F2 /* Info.plist */,
+				3EE64D57224A1111DC9A036B0DA8C0AA /* YUCIHighPassSkinSmoothing.modulemap */,
+				42332C51F166350F4C8B1116A83AD2A3 /* YUCIHighPassSkinSmoothing.xcconfig */,
+				F64F4178EA976B3ED8286266C837C3B9 /* YUCIHighPassSkinSmoothing-dummy.m */,
+				98B04157A2BEFF6CCC6F5DEE55D6B12A /* YUCIHighPassSkinSmoothing-prefix.pch */,
+				FAF40146CD218CBB2566EE7FAEC81F4D /* YUCIHighPassSkinSmoothing-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "YUCIHighPassSkinSmoothingDemo/Pods/Target Support Files/YUCIHighPassSkinSmoothing";
 			sourceTree = "<group>";
 		};
+		EAA7D55C8CAAF9FBEA2B529D1390777F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				24F764F1DEC3E3599FDCAB595D97173B /* YUCIColorLookupFilter.h */,
+				55F94CEA60EE462EA1860914E4E6876E /* YUCIColorLookupFilter.m */,
+				63A3EC4DE8ABD770FD55AE0A4CB8D6B7 /* YUCIHighPassFilter.h */,
+				D89917889AA9EC10D1A08F19C4CCFC05 /* YUCIHighPassFilter.m */,
+				7E128E5548303AA3D9FE9797C7C72EEE /* YUCIHighPassSkinSmoothingFilter.h */,
+				B00952A1F822ABF6530E50EED7871877 /* YUCIHighPassSkinSmoothingFilter.m */,
+				C57523810A235F447101CA906A43B094 /* YUCIMetalUtilities.h */,
+				BA06B383761883BA2E493F7BB9BBA0E6 /* YUCIMetalUtilities.m */,
+				02F349625197CD77EDB36E476DC2C653 /* YUCIRGBToneCurveFilter.h */,
+				2955C27A66EB46ABFF859E9733EF02CD /* YUCIRGBToneCurveFilter.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		F52EC6E1E650E52C5E3DFC109121D8E7 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				97287060D543061FC8B403C78EE7D9D2 /* YUCIHighPassSkinSmoothing */,
+				7542D76943EAC5BEE3A406F3C08408C9 /* YUCIHighPassSkinSmoothing */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -235,15 +244,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A5AB8FBD36814A730BE358A94E46BDF5 /* Headers */ = {
+		835AAE12DA62D9F85B4804616A1C2D4F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA5D6D26AA2138F171D3FBD10516BD54 /* YUCIColorLookupFilter.h in Headers */,
-				4FFC9A32BD29D9A65283E7AD06ED96BE /* YUCIHighPassSkinSmoothing-umbrella.h in Headers */,
-				3067A20A13076364656E9B2EE78520E4 /* YUCIHighPassSkinSmoothingFilter.h in Headers */,
-				5712C5166BD020E562A11AD2E7048833 /* YUCIMetalUtilities.h in Headers */,
-				F771D385D1772736820C97FA5B30B709 /* YUCIRGBToneCurveFilter.h in Headers */,
+				E667DF41A480559AFEED82FFCE6CDB2D /* YUCIColorLookupFilter.h in Headers */,
+				E96C51E9E5BE96F84D59AF5443EE205F /* YUCIHighPassFilter.h in Headers */,
+				067D6DD7CBBD1BC74BBF96ACC8D888D3 /* YUCIHighPassSkinSmoothing-umbrella.h in Headers */,
+				A7E7DFFA496619BBF2CEB8F869FDCA37 /* YUCIHighPassSkinSmoothingFilter.h in Headers */,
+				54446EB0BFE9048D204D0A74FC9D4EC4 /* YUCIMetalUtilities.h in Headers */,
+				633442E1087D80D07EC90CC43CF3F480 /* YUCIRGBToneCurveFilter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,10 +282,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DFF78C80A145B9DED895C22BCA88FE5 /* Build configuration list for PBXNativeTarget "YUCIHighPassSkinSmoothing" */;
 			buildPhases = (
-				6C8487EEB839EC12B3FA945E6A48E6B2 /* Sources */,
+				C4BBF3A615DDD4730A45C710BFC23739 /* Sources */,
 				7B2440D69F8F3E33FE5DFA1D285CD1CA /* Frameworks */,
-				A5AB8FBD36814A730BE358A94E46BDF5 /* Headers */,
-				48064411C6DA4AA59F8C1A1FF65AF0C3 /* Resources */,
+				835AAE12DA62D9F85B4804616A1C2D4F /* Headers */,
+				572B2DD6F56CC2EA17555177F6BDA08E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -314,38 +324,40 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		48064411C6DA4AA59F8C1A1FF65AF0C3 /* Resources */ = {
+		572B2DD6F56CC2EA17555177F6BDA08E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A90490A023E2B3952CA20B2E53B7CA64 /* YUCIColorLookupFilter.cikernel in Resources */,
-				49FA153351D3713CC9FC8E69441CBD2A /* YUCIColorLookupTableDefault.png in Resources */,
-				462C10B598AB44DA6AED2DB519B12491 /* YUCIDermabrasionGaussianHighPassWithHardLightFilter.cikernel in Resources */,
-				571A97DE866E2DA8A8D99104D7801AC9 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel in Resources */,
-				D1142B00C71A19159E50C00FDA373DA9 /* YUCIRGBToneCurveFilter.cikernel in Resources */,
+				128D6FB2344E7D55E6C2FAFAF0AD146C /* YUCIColorLookupFilter.cikernel in Resources */,
+				3A1AC8569B0674D4030847C5C817508C /* YUCIColorLookupTableDefault.png in Resources */,
+				4FC4A9F2015CAB77C733B195842B0FCC /* YUCIDermabrasionHardLightFilter.cikernel in Resources */,
+				4F9B1592F0ECC9B8A05DEF02C060CD10 /* YUCIGreenBlueChannelOverlayBlendFilter.cikernel in Resources */,
+				954F40B2200994D3C25843A0BF5AAAD8 /* YUCIHighPassFilter.cikernel in Resources */,
+				6663E0C67C473465CA62298E8DA371C4 /* YUCIRGBToneCurveFilter.cikernel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6C8487EEB839EC12B3FA945E6A48E6B2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				369768231F61BB1D48688A229FCEBE01 /* YUCIColorLookupFilter.m in Sources */,
-				2BB49960B8BC4240D591EB5CE265370F /* YUCIHighPassSkinSmoothing-dummy.m in Sources */,
-				17AD774C7A599393A5CDDFD22B5C83BC /* YUCIHighPassSkinSmoothingFilter.m in Sources */,
-				2E2DCD7FC9441CDF6831904522F782A9 /* YUCIMetalUtilities.m in Sources */,
-				AAAB6156DE6B0A3BE6496A6DA76CD888 /* YUCIRGBToneCurveFilter.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		98A55C60155C322586775FB46490AC0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6AD3008940C4CAE231BB8E8D0E6AB747 /* Pods-YUCIHighPassSkinSmoothingDemo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BBF3A615DDD4730A45C710BFC23739 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04C541906D9C6B57FA1E2BB779311B01 /* YUCIColorLookupFilter.m in Sources */,
+				90C08AEA10289784A9E67EEF1C37F94F /* YUCIHighPassFilter.m in Sources */,
+				B37BED4CF2944B3EDBBD0854BA82B466 /* YUCIHighPassSkinSmoothing-dummy.m in Sources */,
+				53CE7D2B7D6EF4D6D762E6D20FC5995A /* YUCIHighPassSkinSmoothingFilter.m in Sources */,
+				8130718895C7B96A99AF9A8001BC12E9 /* YUCIMetalUtilities.m in Sources */,
+				7A960B7688511FD8EC53BFE11FC5D070 /* YUCIRGBToneCurveFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +375,7 @@
 /* Begin XCBuildConfiguration section */
 		480C2065330748EA2FC74E0901685D8D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80D2AD3C6319989E0664749F5BAEDF6F /* YUCIHighPassSkinSmoothing.xcconfig */;
+			baseConfigurationReference = 42332C51F166350F4C8B1116A83AD2A3 /* YUCIHighPassSkinSmoothing.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -536,7 +548,7 @@
 		};
 		EAFDA0BFD0FF146FBE26EF4E8A767824 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80D2AD3C6319989E0664749F5BAEDF6F /* YUCIHighPassSkinSmoothing.xcconfig */;
+			baseConfigurationReference = 42332C51F166350F4C8B1116A83AD2A3 /* YUCIHighPassSkinSmoothing.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

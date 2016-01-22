@@ -1,9 +1,7 @@
 
-kernel vec4 filterKernel(__sample image, __sample blurredImage) {
-    vec3 final = image.rgb - blurredImage.rgb + vec3(0.5,0.5,0.5);
-
+kernel vec4 filterKernel(__sample image) {
     float ba = 0.0;
-    vec4 hardLightColor = vec4(vec3(final.b), 1.0);
+    vec4 hardLightColor = vec4(vec3(image.b), 1.0);
     for (int i =0; i < 3; i++) {
         if (hardLightColor.b < 0.5) {
             ba = hardLightColor.b  * hardLightColor.b * 2.;

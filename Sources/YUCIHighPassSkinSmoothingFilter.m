@@ -7,8 +7,8 @@
 //
 
 #import "YUCIHighPassSkinSmoothingFilter.h"
-#import "YUCIColorLookupFilter.h"
 #import "YUCIRGBToneCurveFilter.h"
+#import "YUCIHighPassFilter.h"
 
 #pragma mark - YUCIGreenBlueChannelOverlayBlendFilter
 
@@ -38,27 +38,26 @@
 
 #pragma mark - YUCIDermabrasionGaussianHighpassWithHardLightFilter
 
-@interface YUCIDermabrasionGaussianHighPassWithHardLightFilter : CIFilter
+@interface YUCIDermabrasionHardLightFilter : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
-@property (nonatomic,strong) CIImage *inputGaussianBlurredImage;
 
 @end
 
-@implementation YUCIDermabrasionGaussianHighPassWithHardLightFilter
+@implementation YUCIDermabrasionHardLightFilter
 
 + (CIColorKernel *)filterKernel {
     static CIColorKernel *kernel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIDermabrasionGaussianHighPassWithHardLightFilter class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
+        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIDermabrasionHardLightFilter class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
         kernel = [CIColorKernel kernelWithString:kernelString];
     });
     return kernel;
 }
 
 - (CIImage *)outputImage {
-    return [[YUCIDermabrasionGaussianHighPassWithHardLightFilter filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage,self.inputGaussianBlurredImage]];
+    return [[YUCIDermabrasionHardLightFilter filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage]];
 }
 
 @end
@@ -83,15 +82,13 @@
     YUCIGreenBlueChannelOverlayBlendFilter *channelOverlayFilter = [[YUCIGreenBlueChannelOverlayBlendFilter alloc] init];
     channelOverlayFilter.inputImage = exposureFilter.outputImage;
     
-    CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [blurFilter setValue:self.inputRadius forKey:kCIInputRadiusKey];
-    [blurFilter setValue:channelOverlayFilter.outputImage forKey:kCIInputImageKey];
+    YUCIHighPassFilter *highPassFilter = [[YUCIHighPassFilter alloc] init];
+    highPassFilter.inputImage = channelOverlayFilter.outputImage;
+    highPassFilter.inputRadius = self.inputRadius;
     
-    YUCIDermabrasionGaussianHighPassWithHardLightFilter *highpassWithHardLightFilter = [[YUCIDermabrasionGaussianHighPassWithHardLightFilter alloc] init];
-    highpassWithHardLightFilter.inputImage = channelOverlayFilter.outputImage;
-    highpassWithHardLightFilter.inputGaussianBlurredImage = blurFilter.outputImage;
-    
-    return highpassWithHardLightFilter.outputImage;
+    YUCIDermabrasionHardLightFilter *hardLightFilter = [[YUCIDermabrasionHardLightFilter alloc] init];
+    hardLightFilter.inputImage = highPassFilter.outputImage;
+    return hardLightFilter.outputImage;
 }
 
 @end

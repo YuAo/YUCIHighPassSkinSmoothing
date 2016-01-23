@@ -73,7 +73,7 @@ These steps can make the result better on the areas with high brightness. The wh
 
 ####Input Parameters
 
-`inputAmount`: A number value that controls the intensity of the `Curve Adjustment` step and the sharpness of the final `Sharpen` step. You use this value to control the overall filter strength. Valid from `0` to `1.0`. The default value is `1.0`.
+`inputAmount`: A number value that controls the intensity of the `Curve Adjustment` step and the sharpness of the final `Sharpen` step. You use this value to control the overall filter strength. Valid from `0` to `1.0`. The default value is `0.75`.
 
 `inputControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
 

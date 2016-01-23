@@ -1,5 +1,8 @@
 # YUCIHighPassSkinSmoothing
+
 An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie=UTF-8&q=photoshop+high+pass+skin+smoothing) using CoreImage.framework
+
+Available on both OS X and iOS.
 
 ##Previews
 
@@ -36,7 +39,7 @@ The basic routine of `YUCIHighPassSkinSmoothingFilter` can be described with the
 
 The main theory behind `High Pass Skin Smoothing` is `Frequency Separation`.
 
-Frequency separation allows us to split up the tones and colors of a image from its more detailed textures, because a digital image can be interpreted as different frequencies represented as sine waves.
+Frequency separation splits up the tones and colors of a image from its more detailed textures. It is possible because a digital image can be interpreted as different frequencies represented as sine waves.
 
 > High frequencies in an image will contain information about fine details, such as skin pores, hair, fine lines, skin imperfections.
 
@@ -44,15 +47,29 @@ Frequency separation allows us to split up the tones and colors of a image from 
 
 > https://fstoppers.com/post-production/ultimate-guide-frequency-separation-technique-8699
 
-By using `High Pass` filter, we separate the image into high and low spatial frequencies. Then we will be able to smoothing the image while preseving a fine level of detail by applying adjustments to certain frequencies of the image.
+By using `High Pass` filter, the image can be separated into high and low spatial frequencies. Then we will be able to smoothing the image while preseving a fine level of detail by applying adjustments (`Curve Adjustment` in the diagram) to certain frequencies of the image.
 
-####The High Pass Filter
+####High Pass Filter
 
 There's no `High Pass` filter in CoreImage. Luckily it's not hard to create one (`Photoshop: High Pass` section in the diagram):
 
 ```
 highpass.rgb = image.rgb - gaussianBlurredImage.rgb + vec3(0.5,0.5,0.5)
 ```
+
+####Mask Generating
+
+A mask image is generated using high pass filter (Green and blue channel overlay blend -> high pass -> hard light blend X 3) for separating the parts of the image which need to be adjusted from the ones that should remain untouched.
+
+This mask image is then used in `Blend with Mask (CIBlendWithMask)` filter to blend the adjusted image with the untouched one to produce the final output image.
+
+#####Improvements
+
+Besides the steps in the diagram, `YUCIHighPassSkinSmoothing` actually has two more steps.
+
+The exposure of the input image is decreased by 1 EV before being sent to the `Mask Generating Routine` (in `-[YUCIHighPassDermabrasionRangeSelectionFilter outputImage]` method) and a RGB curve adjustment is added to the mask at the end of the `Mask Generating Routine` (at the end of `YUCIDermabrasionHardLightFilter.cikernel`).
+
+These steps can make the result better on the areas with high brightness. The whole process can of corse work without these two steps.
 
 ####Input Parameters
 
@@ -61,12 +78,6 @@ highpass.rgb = image.rgb - gaussianBlurredImage.rgb + vec3(0.5,0.5,0.5)
 `inputControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
 
 `inputRadius`: A number value that controls the radius (in pixel) of `High Pass` filter. The default value of this parameter is `8.0`. Try adjusting this value according to the resolution of the input image and the level of detail you want to preserve.
-
-####Tweaks
-
-Besides the steps in the diagram, `YUCIHighPassSkinSmoothing` actually has two more steps.
-
-The exposure of the input image is decreased by 1 EV before being sent to the `Mask Generating Routine` (in `-[YUCIHighPassDermabrasionRangeSelectionFilter outputImage]` method) and a RGB curve adjustment is added to the mask at the end of `Mask Generating Routine` (at the end of `YUCIDermabrasionHardLightFilter.cikernel`).
 
 ##Consideration
 

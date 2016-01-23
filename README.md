@@ -51,7 +51,7 @@ By using [High Pass](https://en.wikipedia.org/wiki/High-pass_filter) filter, the
 
 ####High Pass Filter
 
-There's no `High Pass` filter in CoreImage. Luckily it's not hard to create one (`Photoshop: High Pass` section in the diagram):
+There's no `High Pass` filter in CoreImage. Luckily it's not hard to create one (`High Pass Filter` section in the diagram):
 
 ```
 highpass.rgb = image.rgb - gaussianBlurredImage.rgb + vec3(0.5,0.5,0.5)

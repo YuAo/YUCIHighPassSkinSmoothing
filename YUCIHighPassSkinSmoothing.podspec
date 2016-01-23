@@ -6,8 +6,8 @@ Pod::Spec.new do |s|
   s.summary      = 'An implementation of High Pass Skin Smoothing using CoreImage.framework'
   s.source       = {:git => 'https://github.com/YuAo/YUCIHighPassSkinSmoothing.git'}
   s.requires_arc = true
-  s.platform     = :ios, '8.0'
-  s.platform     = :osx, '10.10'
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
   s.source_files = 'Sources/**/*.{h,m}'
   s.resources    = 'Sources/**/*.{png,cikernel}'
 end

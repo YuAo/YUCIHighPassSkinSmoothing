@@ -9,6 +9,7 @@
 #import "YUCIHighPassSkinSmoothingFilter.h"
 #import "YUCIRGBToneCurveFilter.h"
 #import "YUCIHighPassFilter.h"
+#import "YUCIFilterConstructor.h"
 
 #pragma mark - YUCIGreenBlueChannelOverlayBlendFilter
 
@@ -95,6 +96,8 @@
 
 #pragma mark - YUCISkinEnhancementFilter
 
+NSString * const YUCIHighPassSkinSmoothing = @"YUCIHighPassSkinSmoothingFilter";
+
 @interface YUCIHighPassSkinSmoothingFilter ()
 
 @property (nonatomic,strong) YUCIRGBToneCurveFilter *skinToneCurveFilter;
@@ -102,6 +105,33 @@
 @end
 
 @implementation YUCIHighPassSkinSmoothingFilter
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        @autoreleasepool {
+            if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
+                [CIFilter registerFilterName:YUCIHighPassSkinSmoothing
+                                 constructor:[YUCIFilterConstructor constructor]
+                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo]}];
+            }
+        }
+    });
+}
+
+- (NSNumber *)inputAmount {
+    if (!_inputAmount) {
+        _inputAmount = @(0.75);
+    }
+    return _inputAmount;
+}
+
+- (NSNumber *)inputRadius {
+    if (!_inputRadius) {
+        _inputRadius = @(8.0);
+    }
+    return _inputRadius;
+}
 
 - (YUCIRGBToneCurveFilter *)skinToneCurveFilter {
     if (!_skinToneCurveFilter) {
@@ -123,7 +153,7 @@
 
 - (CIImage *)outputImage {
     YUCIHighPassDermabrasionRangeSelectionFilter *rangeSelectionFilter = [[YUCIHighPassDermabrasionRangeSelectionFilter alloc] init];
-    rangeSelectionFilter.inputRadius = self.inputRadius ?: @(8.0);
+    rangeSelectionFilter.inputRadius = self.inputRadius;
     rangeSelectionFilter.inputImage = self.inputImage;
     
     YUCIRGBToneCurveFilter *skinToneCurveFilter = self.skinToneCurveFilter;

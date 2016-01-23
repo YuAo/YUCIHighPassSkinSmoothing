@@ -8,11 +8,13 @@
 
 #import <CoreImage/CoreImage.h>
 
+FOUNDATION_EXPORT NSString * const YUCIHighPassSkinSmoothing;
+
 @interface YUCIHighPassSkinSmoothingFilter : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
 
-@property (nonatomic,copy) NSNumber *inputAmount; //default: 1.0
+@property (nonatomic,copy) NSNumber *inputAmount; //default: 0.75
 
 @property (nonatomic,copy) NSNumber *inputRadius; //default: 8.0
 

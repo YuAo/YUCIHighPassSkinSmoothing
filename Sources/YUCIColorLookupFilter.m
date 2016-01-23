@@ -10,6 +10,13 @@
 
 @implementation YUCIColorLookupFilter
 
+- (NSNumber *)inputIntensity {
+    if (!_inputIntensity) {
+        _inputIntensity = @(1.0);
+    }
+    return _inputIntensity;
+}
+
 + (CIKernel *)filterKernel {
     static CIKernel *kernel;
     static dispatch_once_t onceToken;
@@ -29,7 +36,7 @@
                                                              return self.inputColorLookupTable.extent;
                                                          }
                                                      }
-                                                       arguments:@[self.inputImage,self.inputColorLookupTable,self.inputIntensity?:@(1.0)]];
+                                                       arguments:@[self.inputImage,self.inputColorLookupTable,self.inputIntensity]];
 }
 
 @end

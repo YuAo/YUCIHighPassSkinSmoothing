@@ -7,6 +7,9 @@
 //
 
 #import "YUCIRGBToneCurveFilter.h"
+#import "YUCIFilterConstructor.h"
+
+NSString * const YUCIRGBToneCurve = @"YUCIRGBToneCurveFilter";
 
 @interface YUCIRGBToneCurveFilter ()
 
@@ -18,6 +21,19 @@
 
 @implementation YUCIRGBToneCurveFilter
 
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        @autoreleasepool {
+            if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
+                [CIFilter registerFilterName:YUCIRGBToneCurve
+                                 constructor:[YUCIFilterConstructor constructor]
+                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo, kCICategoryColorAdjustment,kCICategoryInterlaced]}];
+            }
+        }
+    });
+}
+
 + (CIKernel *)filterKernel {
     static CIKernel *kernel;
     static dispatch_once_t onceToken;
@@ -26,6 +42,13 @@
         kernel = [CIKernel kernelWithString:kernelString];
     });
     return kernel;
+}
+
+- (NSNumber *)inputIntensity {
+    if (!_inputIntensity) {
+        _inputIntensity = @(1.0);
+    }
+    return _inputIntensity;
 }
 
 - (CIImage *)outputImage {
@@ -54,7 +77,7 @@
                                                       }
                                                         arguments:@[self.inputImage,
                                                                     self.toneCurveTexture,
-                                                                    self.inputIntensity ?: @(1.0)]];
+                                                                    self.inputIntensity]];
 }
 
 - (void)updateToneCurveTexture {

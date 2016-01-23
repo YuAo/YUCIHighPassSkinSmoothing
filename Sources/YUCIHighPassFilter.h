@@ -8,6 +8,8 @@
 
 #import <CoreImage/CoreImage.h>
 
+FOUNDATION_EXPORT NSString * const YUCIHighPass;
+
 @interface YUCIHighPassFilter : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;

@@ -47,7 +47,7 @@ Frequency separation splits up the tones and colors of a image from its more det
 
 > https://fstoppers.com/post-production/ultimate-guide-frequency-separation-technique-8699
 
-By using `High Pass` filter, the image can be separated into high and low spatial frequencies. Then we will be able to smoothing the image while preseving a fine level of detail by applying adjustments (`Curve Adjustment` in the diagram) to certain frequencies of the image.
+By using [High Pass](https://en.wikipedia.org/wiki/High-pass_filter) filter, the image can be separated into high and low spatial frequencies. Then we will be able to smoothing the image while preseving a fine level of detail by applying adjustments (`Curve Adjustment` in the diagram) to certain frequencies of the image.
 
 ####High Pass Filter
 
@@ -73,7 +73,7 @@ These steps can make the result better on the areas with high brightness. The wh
 
 ####Input Parameters
 
-`inputAmount`: A number value that controls the intensity of the `Curve Adjustment` step and the sharpness of the final `Sharpen` step. You use this value to control the overall filter strength. Valid from `0` to `1.0`. The default value is `1.0`.
+`inputAmount`: A number value that controls the intensity of the `Curve Adjustment` step and the sharpness of the final `Sharpen` step. You use this value to control the overall filter strength. Valid from `0` to `1.0`. The default value is `0.75`.
 
 `inputControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
 
@@ -85,7 +85,11 @@ For the best effect, you need to create the `CIContext` object with a sRGB worki
 
 ##Usage
 
-Just use the `YUCIHighPassSkinSmoothingFilter`.
+Use the `YUCIHighPassSkinSmoothingFilter`, like any other built in core image filters.
+
+On iOS 9 or later, you can use `CIFilter(name: "YUCIHighPassSkinSmoothingFilter")`
+
+`YUCIHighPassFilter` and `YUCIRGBToneCurveFilter` can also be used directly if you need them.
 
 ##Installation
 
@@ -95,6 +99,7 @@ or if you use Cocoapods, add the following to your Podfile
 
 	pod 'YUCIHighPassSkinSmoothing'
 
+
 ##Credits
 
 Thanks a lot to [Yien Ma](https://dribbble.com/yien) for providing a lot of suggestions and fine-tunings to the procedure.
@@ -103,4 +108,4 @@ Thanks a lot to [Yien Ma](https://dribbble.com/yien) for providing a lot of sugg
 
 YUCIHighPassSkinSmoothing is MIT-licensed. See [LICENSE](https://github.com/YuAo/YUCIHighPassSkinSmoothing/blob/master/LICENSE) file for detail.
 
-Copyright © 2016 Yu Ao
+Copyright © 2016 [Yu Ao](https://yuao.me)

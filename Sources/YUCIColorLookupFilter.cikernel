@@ -19,10 +19,6 @@ kernel vec4 filterKernel(sampler inputImage, sampler inputLUT, float intensity) 
     texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
     texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
 
-    /*
-    Won't work with Metal backed CIContext.
-    In Metal, the origin of the pixel coordinate system of a texture coincides with its top left corner. This is the same as the coordinate system in UIKit. However, it differs from the default texture coordinate system in OpenGL, where the origin is the bottom left corner.
-    */
     texPos1.y = 1.0 - texPos1.y;
     texPos2.y = 1.0 - texPos2.y;
 

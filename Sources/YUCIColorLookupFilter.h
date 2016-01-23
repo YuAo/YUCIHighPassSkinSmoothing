@@ -10,10 +10,8 @@
 
 /* 
  Note:
- 
- 1. Won't work with Metal backed CIContext. See YUCIColorLookupFilter.cikernel for detail.
- 
- 2. Requires CIContext object with a sRGB working color space instead of the default light-linear color space.
+
+ Requires CIContext object with a sRGB working color space instead of the default light-linear color space.
  
  */
 

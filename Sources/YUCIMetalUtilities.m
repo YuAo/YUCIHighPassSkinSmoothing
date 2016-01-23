@@ -5,6 +5,7 @@
 //  Created by YuAo on 1/20/16.
 //
 //
+#if __has_include(<Metal/Metal.h>)
 
 #import "YUCIMetalUtilities.h"
 
@@ -46,3 +47,5 @@
 }
 
 @end
+
+#endif

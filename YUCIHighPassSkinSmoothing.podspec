@@ -7,6 +7,7 @@ Pod::Spec.new do |s|
   s.source       = {:git => 'https://github.com/YuAo/YUCIHighPassSkinSmoothing.git'}
   s.requires_arc = true
   s.platform     = :ios, '8.0'
+  s.platform     = :osx, '10.10'
   s.source_files = 'Sources/**/*.{h,m}'
   s.resources    = 'Sources/**/*.{png,cikernel}'
 end

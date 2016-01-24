@@ -1,5 +1,9 @@
 # YUCIHighPassSkinSmoothing
 
+![CocoaPods Platform](https://img.shields.io/cocoapods/p/YUCIHighPassSkinSmoothing.svg?style=flat-square)
+![CocoaPods Version](https://img.shields.io/cocoapods/v/YUCIHighPassSkinSmoothing.svg?style=flat-square)
+![CocoaPods License](https://img.shields.io/cocoapods/l/YUCIHighPassSkinSmoothing.svg?style=flat-square)
+
 An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie=UTF-8&q=photoshop+high+pass+skin+smoothing) using CoreImage.framework
 
 Available on both OS X and iOS.

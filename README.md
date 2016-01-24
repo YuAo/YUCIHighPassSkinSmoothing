@@ -73,7 +73,7 @@ Besides the steps in the diagram, `YUCIHighPassSkinSmoothing` actually has two m
 
 The exposure of the input image is decreased by 1 EV before being sent to the `Mask Generating Routine` (in `-[YUCIHighPassDermabrasionRangeSelectionFilter outputImage]` method) and a RGB curve adjustment is added to the mask at the end of the `Mask Generating Routine` (at the end of `YUCIDermabrasionHardLightFilter.cikernel`).
 
-These steps can make the result better on the areas with high brightness. The whole process can of corse work without these two steps.
+These steps can make the result better on the areas with high brightness. The whole process can of course work without these two steps.
 
 ####Input Parameters
 

@@ -85,7 +85,7 @@ These steps can make the result better on the areas with high brightness. The wh
 
 ##Consideration
 
-For the best effect, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.
+For the best result, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.
 
 ##Usage
 

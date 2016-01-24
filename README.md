@@ -87,6 +87,8 @@ These steps can make the result better on the areas with high brightness. The wh
 
 For the best result, you need to create the `CIContext` object with a sRGB working color space instead of the default light-linear color space. You can specify a working color space when creating a context using the `kCIContextWorkingColorSpace` key in the `options` dictionary.
 
+You can also try to apply this filter only to the skin/face area of a image, by using a skin detection filter or the core image face detector.
+
 ##Usage
 
 Use the `YUCIHighPassSkinSmoothingFilter`, like any other built in core image filters.

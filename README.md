@@ -89,6 +89,11 @@ For the best result, you need to create the `CIContext` object with a sRGB worki
 
 You can also try to apply this filter only to the skin/face area of a image, by using a skin detection filter or the core image face detector.
 
+##Requirements
+
+* iOS 8.0+ / OS X 10.10+
+* Xcode 7.0+
+
 ##Usage
 
 Use the `YUCIHighPassSkinSmoothingFilter`, like any other built in core image filters.

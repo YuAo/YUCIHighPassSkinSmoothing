@@ -14,6 +14,10 @@ Available on both OS X and iOS.
 
 ![Preview 4](http://yuao.github.io/YUCIHighPassSkinSmoothing/previews/4.jpg)
 
+![Preview 5](http://yuao.github.io/YUCIHighPassSkinSmoothing/previews/5.jpg)
+
+![Preview 6](http://yuao.github.io/YUCIHighPassSkinSmoothing/previews/6.jpg)
+
 ##Performance
 
 Tests are made in Instruments with the "OpenGL ES Analysis" template. 
@@ -87,9 +91,13 @@ For the best effect, you need to create the `CIContext` object with a sRGB worki
 
 Use the `YUCIHighPassSkinSmoothingFilter`, like any other built in core image filters.
 
-On iOS 9 or later, you can use `CIFilter(name: "YUCIHighPassSkinSmoothingFilter")`
+On OS X and iOS 9 or later, you can use `CIFilter(name: "YUCIHighPassSkinSmoothingFilter")`
 
 `YUCIHighPassFilter` and `YUCIRGBToneCurveFilter` can also be used directly if you need them.
+
+Open `YUCIHighPassSkinSmoothingDemo/YUCIHighPassSkinSmoothingDemo.xcworkspace` to run the iOS demo app. The demo app demonstrated how to use the filter and how to use different kinds of core image context to render the output image. The `Metal` core image context is only available on 64-bit devices with iOS 9.
+
+__Please run the demo app on an actual device.__ The iOS simulator does not provide a pixel-accurate match to the graphics hardware. Rendering performance of OpenGL ES in Simulator has no relation to the performance of OpenGL ES on an actual device.
 
 ##Installation
 
@@ -99,6 +107,14 @@ or if you use Cocoapods, add the following to your Podfile
 
 	pod 'YUCIHighPassSkinSmoothing'
 
+
+##Contributing
+
+You are encouraged to try different input parameters or tweak the interal procedure to make this filter better or just fit your needs.
+
+Don't hesitate to open an issue if you have any idea or suggestion.
+
+If you find a bug and know exactly how to fix it, please open a pull request. Be sure to test the code on both OS X and iOS.
 
 ##Credits
 

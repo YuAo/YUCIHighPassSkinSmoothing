@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreImage/CoreImage.h>
 /*
  Using class with name `filterName` to construct a filter object.
  */

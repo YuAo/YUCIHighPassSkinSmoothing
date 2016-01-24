@@ -27,7 +27,7 @@ The `CIContext` object is created with `EAGLContext` and a sRGB working color sp
 ```
 Image Size: 640 x 800
 Input Radius: 7.0
-Operation System: iOS 9
+Operating System: iOS 9
 
 Device: iPhone 5s / FPS: 60
 Device: iPhone 5  / FPS: ~24

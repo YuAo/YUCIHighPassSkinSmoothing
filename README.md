@@ -39,7 +39,7 @@ Device: iPhone 5  / FPS: ~24
 
 ##Concepts
 
-The basic routine of `YUCIHighPassSkinSmoothingFilter` can be described with the following diagram.
+The basic routine of `YUCIHighPassSkinSmoothing` can be described with the following diagram.
 
 [![Routine](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)](http://yuao.github.io/YUCIHighPassSkinSmoothing/docs/filter-routine.jpg)
 
@@ -75,7 +75,7 @@ This mask image is then used in `Blend with Mask (CIBlendWithMask)` filter to bl
 
 Besides the steps in the diagram, `YUCIHighPassSkinSmoothing` actually has two more steps.
 
-The exposure of the input image is decreased by 1 EV before being sent to the `Mask Generating Routine` (in `-[YUCIHighPassDermabrasionRangeSelectionFilter outputImage]` method) and a RGB curve adjustment is added to the mask at the end of the `Mask Generating Routine` (at the end of `YUCIDermabrasionHardLightFilter.cikernel`).
+The exposure of the input image is decreased by 1 EV before being sent to the `Mask Generating Routine` (in `-[YUCIHighPassSkinSmoothingMaskGenerator outputImage]` method) and a RGB curve adjustment is added to the mask at the end of the `Mask Generating Routine` (at the end of `YUCIHighPassSkinSmoothingMaskBoost.cikernel`).
 
 These steps can make the result better on the areas with high brightness. The whole process can of course work without these two steps.
 
@@ -100,11 +100,11 @@ You can also try to apply this filter only to the skin/face area of a image, by 
 
 ##Usage
 
-Use the `YUCIHighPassSkinSmoothingFilter`, like any other built in core image filters.
+Use the `YUCIHighPassSkinSmoothing`, like any other built in core image filters.
 
-On OS X and iOS 9 or later, you can use `CIFilter(name: "YUCIHighPassSkinSmoothingFilter")`
+On OS X and iOS 9 or later, you can use `CIFilter(name: "YUCIHighPassSkinSmoothing")`
 
-`YUCIHighPassFilter` and `YUCIRGBToneCurveFilter` can also be used directly if you need them.
+`YUCIHighPass` and `YUCIRGBToneCurve` can also be used directly if you need them.
 
 Open `YUCIHighPassSkinSmoothingDemo/YUCIHighPassSkinSmoothingDemo.xcworkspace` to run the iOS demo app. The demo app demonstrated how to use the filter and how to use different kinds of core image context to render the output image. The `Metal` core image context is only available on 64-bit devices with iOS 9.
 

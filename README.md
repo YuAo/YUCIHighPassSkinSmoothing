@@ -102,7 +102,19 @@ You can also try to apply this filter only to the skin/face area of a image, by 
 
 Use the `YUCIHighPassSkinSmoothing`, like any other built in core image filters.
 
-On OS X and iOS 9 or later, you can use `CIFilter(name: "YUCIHighPassSkinSmoothing")`
+```swift
+let filter = YUCIHighPassSkinSmoothing()
+filter.inputImage = ...
+filter.inputAmount = ...
+let outputImage = filter.outputImage!
+
+/* Or */
+
+let filter = CIFilter(name: "YUCIHighPassSkinSmoothing")!
+filter.setValue(inputImage, forKey: kCIInputImageKey)
+filter.setValue(0.7, forKey: "inputAmount")
+let outputImage = filter.outputImage!
+```
 
 `YUCIHighPass` and `YUCIRGBToneCurve` can also be used directly if you need them.
 

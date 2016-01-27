@@ -49,8 +49,20 @@
     return _inputIntensity;
 }
 
+- (NSArray<CIVector *> *)defaultCurveControlPoints {
+    return [NSArray arrayWithObjects:[CIVector vectorWithX:0 Y:0], [CIVector vectorWithX:0.5 Y:0.5], [CIVector vectorWithX:1 Y:1], nil];
+}
+
+- (void)setDefaults {
+    self.inputIntensity = nil;
+    self.redControlPoints = self.defaultCurveControlPoints;
+    self.greenControlPoints = self.defaultCurveControlPoints;
+    self.blueControlPoints = self.defaultCurveControlPoints;
+    self.rgbCompositeControlPoints = self.defaultCurveControlPoints;
+}
+
 - (CIImage *)outputImage {
-    NSArray *defaultCurve = [NSArray arrayWithObjects:[CIVector vectorWithX:0 Y:0], [CIVector vectorWithX:0.5 Y:0.5], [CIVector vectorWithX:1 Y:1], nil];
+    NSArray *defaultCurve = self.defaultCurveControlPoints;
     if (self.redControlPoints.count == 0) {
         self.redControlPoints = defaultCurve;
     }

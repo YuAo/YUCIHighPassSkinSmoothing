@@ -149,6 +149,12 @@
     return self.skinToneCurveFilter.rgbCompositeControlPoints;
 }
 
+- (void)setDefaults {
+    self.inputAmount = nil;
+    self.inputRadius = nil;
+    self.skinToneCurveFilter = nil;
+}
+
 - (CIImage *)outputImage {
     YUCIHighPassSkinSmoothingMaskGenerator *maskGenerator = [[YUCIHighPassSkinSmoothingMaskGenerator alloc] init];
     maskGenerator.inputRadius = self.inputRadius;

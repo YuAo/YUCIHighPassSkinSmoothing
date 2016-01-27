@@ -41,6 +41,10 @@
     return _inputRadius;
 }
 
+- (void)setDefaults {
+    self.inputRadius = nil;
+}
+
 - (CIImage *)outputImage {
     CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [blurFilter setValue:self.inputRadius forKey:kCIInputRadiusKey];

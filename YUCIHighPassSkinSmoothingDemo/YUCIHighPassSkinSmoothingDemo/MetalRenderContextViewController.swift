@@ -37,7 +37,7 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
         
         let texture = YUCIMetalUtilities.textureFormCGImage(UIImage(named: "SampleImage")!.CGImage!, device: self.metalView.device)
         let inputCIImage = CIImage(MTLTexture: texture, options: nil)
-        let filter = CIFilter(name: YUCIHighPassSkinSmoothing)!
+        let filter = CIFilter(name: "YUCIHighPassSkinSmoothing")!
         filter.setValue(inputCIImage, forKey: kCIInputImageKey)
         filter.setValue(0.7, forKey: "inputAmount")
         filter.setValue(7.0 * inputCIImage.extent.width/750.0, forKey: kCIInputRadiusKey)

@@ -8,9 +8,7 @@
 
 #import <CoreImage/CoreImage.h>
 
-FOUNDATION_EXPORT NSString * const YUCIHighPassSkinSmoothing;
-
-@interface YUCIHighPassSkinSmoothingFilter : CIFilter
+@interface YUCIHighPassSkinSmoothing : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
 

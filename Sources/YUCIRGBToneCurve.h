@@ -8,9 +8,7 @@
 
 #import <CoreImage/CoreImage.h>
 
-FOUNDATION_EXPORT NSString * const YUCIRGBToneCurve;
-
-@interface YUCIRGBToneCurveFilter : CIFilter
+@interface YUCIRGBToneCurve : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
 

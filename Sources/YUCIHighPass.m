@@ -6,19 +6,17 @@
 //
 //
 
-#import "YUCIHighPassFilter.h"
+#import "YUCIHighPass.h"
 #import "YUCIFilterConstructor.h"
 
-NSString * const YUCIHighPass = @"YUCIHighPassFilter";
-
-@implementation YUCIHighPassFilter
+@implementation YUCIHighPass
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
             if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
-                [CIFilter registerFilterName:YUCIHighPass
+                [CIFilter registerFilterName:NSStringFromClass([YUCIHighPass class])
                                  constructor:[YUCIFilterConstructor constructor]
                              classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo]}];
             }
@@ -30,7 +28,7 @@ NSString * const YUCIHighPass = @"YUCIHighPassFilter";
     static CIColorKernel *kernel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIHighPassFilter class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
+        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIHighPass class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
         kernel = [CIColorKernel kernelWithString:kernelString];
     });
     return kernel;
@@ -47,7 +45,7 @@ NSString * const YUCIHighPass = @"YUCIHighPassFilter";
     CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [blurFilter setValue:self.inputRadius forKey:kCIInputRadiusKey];
     [blurFilter setValue:self.inputImage forKey:kCIInputImageKey];
-    return [[YUCIHighPassFilter filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage,blurFilter.outputImage]];
+    return [[YUCIHighPass filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage,blurFilter.outputImage]];
 }
 
 @end

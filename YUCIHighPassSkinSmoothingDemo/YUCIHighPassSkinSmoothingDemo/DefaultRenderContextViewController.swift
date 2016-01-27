@@ -12,7 +12,7 @@ import YUCIHighPassSkinSmoothing
 class DefaultRenderContextViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     let context = CIContext(options: [kCIContextWorkingColorSpace: CGColorSpaceCreateDeviceRGB()!])
-    let filter = YUCIHighPassSkinSmoothingFilter()
+    let filter = YUCIHighPassSkinSmoothing()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var amountSlider: UISlider!

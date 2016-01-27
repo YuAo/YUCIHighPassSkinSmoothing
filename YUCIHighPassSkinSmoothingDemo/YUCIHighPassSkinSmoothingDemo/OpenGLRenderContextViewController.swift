@@ -20,7 +20,7 @@ class OpenGLRenderContextViewController: GLKViewController {
     
     var startDate: NSDate = NSDate()
     
-    var filter = YUCIHighPassSkinSmoothingFilter()
+    var filter = YUCIHighPassSkinSmoothing()
     
     var inputCIImage = CIImage(CGImage: UIImage(named: "SampleImage")!.CGImage!)
     

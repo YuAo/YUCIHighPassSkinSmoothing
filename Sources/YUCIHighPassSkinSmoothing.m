@@ -6,66 +6,66 @@
 //  Copyright © 2016 YuAo. All rights reserved.
 //
 
-#import "YUCIHighPassSkinSmoothingFilter.h"
-#import "YUCIRGBToneCurveFilter.h"
-#import "YUCIHighPassFilter.h"
+#import "YUCIHighPassSkinSmoothing.h"
+#import "YUCIRGBToneCurve.h"
+#import "YUCIHighPass.h"
 #import "YUCIFilterConstructor.h"
 
-#pragma mark - YUCIGreenBlueChannelOverlayBlendFilter
+#pragma mark - YUCIGreenBlueChannelOverlayBlend
 
-@interface YUCIGreenBlueChannelOverlayBlendFilter : CIFilter
+@interface YUCIGreenBlueChannelOverlayBlend : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
 
 @end
 
-@implementation YUCIGreenBlueChannelOverlayBlendFilter
+@implementation YUCIGreenBlueChannelOverlayBlend
 
 + (CIColorKernel *)filterKernel {
     static CIColorKernel *kernel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIGreenBlueChannelOverlayBlendFilter class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
+        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIGreenBlueChannelOverlayBlend class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
         kernel = [CIColorKernel kernelWithString:kernelString];
     });
     return kernel;
 }
 
 - (CIImage *)outputImage {
-    return [[YUCIGreenBlueChannelOverlayBlendFilter filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage]];
+    return [[YUCIGreenBlueChannelOverlayBlend filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage]];
 }
 
 @end
 
-#pragma mark - YUCIDermabrasionGaussianHighpassWithHardLightFilter
+#pragma mark - YUCIHighPassSkinSmoothingMaskHardLightBlend
 
-@interface YUCIDermabrasionHardLightFilter : CIFilter
+@interface YUCIHighPassSkinSmoothingMaskBoost : CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
 
 @end
 
-@implementation YUCIDermabrasionHardLightFilter
+@implementation YUCIHighPassSkinSmoothingMaskBoost
 
 + (CIColorKernel *)filterKernel {
     static CIColorKernel *kernel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIDermabrasionHardLightFilter class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
+        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIHighPassSkinSmoothingMaskBoost class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
         kernel = [CIColorKernel kernelWithString:kernelString];
     });
     return kernel;
 }
 
 - (CIImage *)outputImage {
-    return [[YUCIDermabrasionHardLightFilter filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage]];
+    return [[YUCIHighPassSkinSmoothingMaskBoost filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage]];
 }
 
 @end
 
 #pragma mark - YUCIHighpassDermabrasionRangeSelectionFilter
 
-@interface YUCIHighPassDermabrasionRangeSelectionFilter: CIFilter
+@interface YUCIHighPassSkinSmoothingMaskGenerator: CIFilter
 
 @property (nonatomic,strong) CIImage *inputImage;
 
@@ -73,21 +73,21 @@
 
 @end
 
-@implementation YUCIHighPassDermabrasionRangeSelectionFilter
+@implementation YUCIHighPassSkinSmoothingMaskGenerator
 
 - (CIImage *)outputImage {
     CIFilter *exposureFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
     [exposureFilter setValue:self.inputImage forKey:kCIInputImageKey];
     [exposureFilter setValue:@(-1.0) forKey:kCIInputEVKey];
     
-    YUCIGreenBlueChannelOverlayBlendFilter *channelOverlayFilter = [[YUCIGreenBlueChannelOverlayBlendFilter alloc] init];
+    YUCIGreenBlueChannelOverlayBlend *channelOverlayFilter = [[YUCIGreenBlueChannelOverlayBlend alloc] init];
     channelOverlayFilter.inputImage = exposureFilter.outputImage;
     
-    YUCIHighPassFilter *highPassFilter = [[YUCIHighPassFilter alloc] init];
+    YUCIHighPass *highPassFilter = [[YUCIHighPass alloc] init];
     highPassFilter.inputImage = channelOverlayFilter.outputImage;
     highPassFilter.inputRadius = self.inputRadius;
     
-    YUCIDermabrasionHardLightFilter *hardLightFilter = [[YUCIDermabrasionHardLightFilter alloc] init];
+    YUCIHighPassSkinSmoothingMaskBoost *hardLightFilter = [[YUCIHighPassSkinSmoothingMaskBoost alloc] init];
     hardLightFilter.inputImage = highPassFilter.outputImage;
     return hardLightFilter.outputImage;
 }
@@ -96,22 +96,20 @@
 
 #pragma mark - YUCISkinEnhancementFilter
 
-NSString * const YUCIHighPassSkinSmoothing = @"YUCIHighPassSkinSmoothingFilter";
+@interface YUCIHighPassSkinSmoothing ()
 
-@interface YUCIHighPassSkinSmoothingFilter ()
-
-@property (nonatomic,strong) YUCIRGBToneCurveFilter *skinToneCurveFilter;
+@property (nonatomic,strong) YUCIRGBToneCurve *skinToneCurveFilter;
 
 @end
 
-@implementation YUCIHighPassSkinSmoothingFilter
+@implementation YUCIHighPassSkinSmoothing
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
             if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
-                [CIFilter registerFilterName:YUCIHighPassSkinSmoothing
+                [CIFilter registerFilterName:NSStringFromClass([YUCIHighPassSkinSmoothing class])
                                  constructor:[YUCIFilterConstructor constructor]
                              classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo]}];
             }
@@ -133,9 +131,9 @@ NSString * const YUCIHighPassSkinSmoothing = @"YUCIHighPassSkinSmoothingFilter";
     return _inputRadius;
 }
 
-- (YUCIRGBToneCurveFilter *)skinToneCurveFilter {
+- (YUCIRGBToneCurve *)skinToneCurveFilter {
     if (!_skinToneCurveFilter) {
-        _skinToneCurveFilter = [[YUCIRGBToneCurveFilter alloc] init];
+        _skinToneCurveFilter = [[YUCIRGBToneCurve alloc] init];
         _skinToneCurveFilter.rgbCompositeControlPoints = @[[CIVector vectorWithX:0 Y:0],
                                                            [CIVector vectorWithX:120/255.0 Y:146/255.0],
                                                            [CIVector vectorWithX:1.0 Y:1.0]];
@@ -152,18 +150,18 @@ NSString * const YUCIHighPassSkinSmoothing = @"YUCIHighPassSkinSmoothingFilter";
 }
 
 - (CIImage *)outputImage {
-    YUCIHighPassDermabrasionRangeSelectionFilter *rangeSelectionFilter = [[YUCIHighPassDermabrasionRangeSelectionFilter alloc] init];
-    rangeSelectionFilter.inputRadius = self.inputRadius;
-    rangeSelectionFilter.inputImage = self.inputImage;
+    YUCIHighPassSkinSmoothingMaskGenerator *maskGenerator = [[YUCIHighPassSkinSmoothingMaskGenerator alloc] init];
+    maskGenerator.inputRadius = self.inputRadius;
+    maskGenerator.inputImage = self.inputImage;
     
-    YUCIRGBToneCurveFilter *skinToneCurveFilter = self.skinToneCurveFilter;
+    YUCIRGBToneCurve *skinToneCurveFilter = self.skinToneCurveFilter;
     skinToneCurveFilter.inputImage = self.inputImage;
     skinToneCurveFilter.inputIntensity = self.inputAmount;
     
     CIFilter *blendWithMaskFilter = [CIFilter filterWithName:@"CIBlendWithMask"];
     [blendWithMaskFilter setValue:self.inputImage forKey:kCIInputImageKey];
     [blendWithMaskFilter setValue:skinToneCurveFilter.outputImage forKey:kCIInputBackgroundImageKey];
-    [blendWithMaskFilter setValue:rangeSelectionFilter.outputImage forKey:kCIInputMaskImageKey];
+    [blendWithMaskFilter setValue:maskGenerator.outputImage forKey:kCIInputMaskImageKey];
     
     CIFilter *shapenFilter = [CIFilter filterWithName:@"CISharpenLuminance"];
     [shapenFilter setValue:@(0.6 * self.inputAmount.floatValue) forKey:@"inputSharpness"];

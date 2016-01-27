@@ -6,12 +6,10 @@
 //
 //
 
-#import "YUCIRGBToneCurveFilter.h"
+#import "YUCIRGBToneCurve.h"
 #import "YUCIFilterConstructor.h"
 
-NSString * const YUCIRGBToneCurve = @"YUCIRGBToneCurveFilter";
-
-@interface YUCIRGBToneCurveFilter ()
+@interface YUCIRGBToneCurve ()
 
 @property (nonatomic,copy) NSArray *redCurve, *greenCurve, *blueCurve, *rgbCompositeCurve;
 
@@ -19,14 +17,14 @@ NSString * const YUCIRGBToneCurve = @"YUCIRGBToneCurveFilter";
 
 @end
 
-@implementation YUCIRGBToneCurveFilter
+@implementation YUCIRGBToneCurve
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
             if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
-                [CIFilter registerFilterName:YUCIRGBToneCurve
+                [CIFilter registerFilterName:NSStringFromClass([YUCIRGBToneCurve class])
                                  constructor:[YUCIFilterConstructor constructor]
                              classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo, kCICategoryColorAdjustment,kCICategoryInterlaced]}];
             }
@@ -38,7 +36,7 @@ NSString * const YUCIRGBToneCurve = @"YUCIRGBToneCurveFilter";
     static CIKernel *kernel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIRGBToneCurveFilter class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
+        NSString *kernelString = [[NSString alloc] initWithContentsOfURL:[[NSBundle bundleForClass:self] URLForResource:NSStringFromClass([YUCIRGBToneCurve class]) withExtension:@"cikernel"] encoding:NSUTF8StringEncoding error:nil];
         kernel = [CIKernel kernelWithString:kernelString];
     });
     return kernel;
@@ -67,17 +65,17 @@ NSString * const YUCIRGBToneCurve = @"YUCIRGBToneCurveFilter";
     }
     [self updateToneCurveTexture];
     
-    return [[YUCIRGBToneCurveFilter filterKernel] applyWithExtent:self.inputImage.extent
-                                                      roiCallback:^CGRect(int index, CGRect destRect) {
-                                                          if (index == 0) {
-                                                              return destRect;
-                                                          } else {
-                                                              return self.toneCurveTexture.extent;
-                                                          }
-                                                      }
-                                                        arguments:@[self.inputImage,
-                                                                    self.toneCurveTexture,
-                                                                    self.inputIntensity]];
+    return [[YUCIRGBToneCurve filterKernel] applyWithExtent:self.inputImage.extent
+                                                roiCallback:^CGRect(int index, CGRect destRect) {
+                                                    if (index == 0) {
+                                                        return destRect;
+                                                    } else {
+                                                        return self.toneCurveTexture.extent;
+                                                    }
+                                                }
+                                                  arguments:@[self.inputImage,
+                                                              self.toneCurveTexture,
+                                                              self.inputIntensity]];
 }
 
 - (void)updateToneCurveTexture {

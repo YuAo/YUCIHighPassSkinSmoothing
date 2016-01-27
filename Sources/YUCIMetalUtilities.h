@@ -12,7 +12,7 @@
 
 @interface YUCIMetalUtilities : NSObject
 
-+ (id<MTLTexture>)textureFormCGImage:(CGImageRef)imageRef device:(id<MTLDevice>)device;
++ (id<MTLTexture>)textureFromCGImage:(CGImageRef)imageRef device:(id<MTLDevice>)device;
 
 @end
 

@@ -11,7 +11,7 @@
 
 @implementation YUCIMetalUtilities
 
-+ (id<MTLTexture>)textureFormCGImage:(CGImageRef)imageRef device:(id<MTLDevice>)device {
++ (id<MTLTexture>)textureFromCGImage:(CGImageRef)imageRef device:(id<MTLDevice>)device {
     // Create a suitable bitmap context for extracting the bits of the image
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);

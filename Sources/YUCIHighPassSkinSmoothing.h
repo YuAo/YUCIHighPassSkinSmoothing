@@ -10,12 +10,12 @@
 
 @interface YUCIHighPassSkinSmoothing : CIFilter
 
-@property (nonatomic,strong) CIImage *inputImage;
+@property (nonatomic, strong, nullable) CIImage *inputImage;
 
-@property (nonatomic,copy) NSNumber *inputAmount; //default: 0.75
+@property (nonatomic, copy, null_resettable) NSNumber *inputAmount; //default: 0.75
 
-@property (nonatomic,copy) NSNumber *inputRadius; //default: 8.0
+@property (nonatomic, copy, null_resettable) NSNumber *inputRadius; //default: 8.0
 
-@property (nonatomic,copy) NSArray<CIVector *> *inputToneCurveControlPoints; //default: (0,0) (120/255.0,146/255.0) (1,1)
+@property (nonatomic, copy, null_resettable) NSArray<CIVector *> *inputToneCurveControlPoints; //default: (0,0) (120/255.0,146/255.0) (1,1)
 
 @end

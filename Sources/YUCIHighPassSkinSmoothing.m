@@ -134,25 +134,32 @@
 - (YUCIRGBToneCurve *)skinToneCurveFilter {
     if (!_skinToneCurveFilter) {
         _skinToneCurveFilter = [[YUCIRGBToneCurve alloc] init];
-        _skinToneCurveFilter.rgbCompositeControlPoints = @[[CIVector vectorWithX:0 Y:0],
-                                                           [CIVector vectorWithX:120/255.0 Y:146/255.0],
-                                                           [CIVector vectorWithX:1.0 Y:1.0]];
+        _skinToneCurveFilter.inputRGBCompositeControlPoints = self.defaultInputRGBCompositeControlPoints;
     }
     return _skinToneCurveFilter;
 }
 
+- (NSArray<CIVector *> *)defaultInputRGBCompositeControlPoints {
+    return @[[CIVector vectorWithX:0 Y:0],
+             [CIVector vectorWithX:120/255.0 Y:146/255.0],
+             [CIVector vectorWithX:1.0 Y:1.0]];
+}
+
 - (void)setInputToneCurveControlPoints:(NSArray<CIVector *> *)inputToneCurveControlPoints {
-    self.skinToneCurveFilter.rgbCompositeControlPoints = inputToneCurveControlPoints;
+    if (inputToneCurveControlPoints.count == 0) {
+        inputToneCurveControlPoints = self.defaultInputRGBCompositeControlPoints;
+    }
+    self.skinToneCurveFilter.inputRGBCompositeControlPoints = inputToneCurveControlPoints;
 }
 
 - (NSArray<CIVector *> *)inputToneCurveControlPoints {
-    return self.skinToneCurveFilter.rgbCompositeControlPoints;
+    return self.skinToneCurveFilter.inputRGBCompositeControlPoints;
 }
 
 - (void)setDefaults {
     self.inputAmount = nil;
     self.inputRadius = nil;
-    self.skinToneCurveFilter = nil;
+    self.inputToneCurveControlPoints = nil;
 }
 
 - (CIImage *)outputImage {

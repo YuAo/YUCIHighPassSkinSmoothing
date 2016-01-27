@@ -10,13 +10,13 @@
 
 @interface YUCIRGBToneCurve : CIFilter
 
-@property (nonatomic,strong) CIImage *inputImage;
+@property (nonatomic, strong, nullable) CIImage *inputImage;
 
-@property(nonatomic, copy) NSArray<CIVector *> *redControlPoints;
-@property(nonatomic, copy) NSArray<CIVector *> *greenControlPoints;
-@property(nonatomic, copy) NSArray<CIVector *> *blueControlPoints;
-@property(nonatomic, copy) NSArray<CIVector *> *rgbCompositeControlPoints;
+@property (nonatomic, copy, null_resettable) NSArray<CIVector *> *inputRedControlPoints;
+@property (nonatomic, copy, null_resettable) NSArray<CIVector *> *inputGreenControlPoints;
+@property (nonatomic, copy, null_resettable) NSArray<CIVector *> *inputBlueControlPoints;
+@property (nonatomic, copy, null_resettable) NSArray<CIVector *> *inputRGBCompositeControlPoints;
 
-@property (nonatomic,copy) NSNumber *inputIntensity; //default 1.0
+@property (nonatomic, copy, null_resettable) NSNumber *inputIntensity; //default 1.0
 
 @end

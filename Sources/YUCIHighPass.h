@@ -10,8 +10,8 @@
 
 @interface YUCIHighPass : CIFilter
 
-@property (nonatomic,strong) CIImage *inputImage;
+@property (nonatomic, strong, nullable) CIImage *inputImage;
 
-@property (nonatomic,copy) NSNumber *inputRadius; //default 1.0
+@property (nonatomic, copy, null_resettable) NSNumber *inputRadius; //default 1.0
 
 @end

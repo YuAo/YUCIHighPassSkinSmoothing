@@ -47,8 +47,8 @@
 
 - (CIImage *)outputImage {
     CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [blurFilter setValue:self.inputImage.imageByClampingToExtent forKey:kCIInputImageKey];
     [blurFilter setValue:self.inputRadius forKey:kCIInputRadiusKey];
-    [blurFilter setValue:self.inputImage forKey:kCIInputImageKey];
     return [[YUCIHighPass filterKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage,blurFilter.outputImage]];
 }
 

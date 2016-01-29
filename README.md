@@ -24,7 +24,7 @@ Available on both OS X and iOS.
 
 ##Performance
 
-Tests are made in Instruments with the "OpenGL ES Analysis" template. 
+Tests are made in Instruments with the "OpenGL ES Analysis" template.
 
 The `CIContext` object is created with `EAGLContext` and a sRGB working color space (`CGColorSpaceCreateDeviceRGB()`).
 
@@ -116,20 +116,21 @@ filter.setValue(0.7, forKey: "inputAmount")
 let outputImage = filter.outputImage!
 ```
 
-`YUCIHighPass` and `YUCIRGBToneCurve` can also be used directly if you need them.
-
 Open `YUCIHighPassSkinSmoothingDemo/YUCIHighPassSkinSmoothingDemo.xcworkspace` to run the iOS demo app. The demo app demonstrated how to use the filter and how to use different kinds of core image context to render the output image. The `Metal` core image context is only available on 64-bit devices with iOS 9.
 
 __Please run the demo app on an actual device.__ The iOS simulator does not provide a pixel-accurate match to the graphics hardware. Rendering performance of OpenGL ES in Simulator has no relation to the performance of OpenGL ES on an actual device.
 
 ##Installation
 
-Either clone the repo and manually add the files in `Sources` directory
+`YUCIHighPassSkinSmoothing` makes use of [Vivid](https://github.com/YuAo/Vivid).
 
-or if you use Cocoapods, add the following to your Podfile
+####Cocoapods
+Add the following to your `Podfile`
 
 	pod 'YUCIHighPassSkinSmoothing'
 
+####Manually
+Clone this repo and [Vivid](https://github.com/YuAo/Vivid) then manually add the files in `Sources` directories to your project.
 
 ##Contributing
 

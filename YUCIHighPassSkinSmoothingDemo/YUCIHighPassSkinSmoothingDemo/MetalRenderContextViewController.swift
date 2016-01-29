@@ -8,6 +8,7 @@
 
 import UIKit
 import YUCIHighPassSkinSmoothing
+import Vivid
 
 #if !(arch(i386) || arch(x86_64)) && (os(iOS) || os(watchOS) || os(tvOS))
 import MetalKit

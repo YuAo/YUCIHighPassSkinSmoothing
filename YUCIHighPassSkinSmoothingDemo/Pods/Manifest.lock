@@ -1,5 +1,7 @@
 PODS:
-  - YUCIHighPassSkinSmoothing (1.0)
+  - Vivid (0.1)
+  - YUCIHighPassSkinSmoothing (1.3):
+    - Vivid
 
 DEPENDENCIES:
   - YUCIHighPassSkinSmoothing (from `../`)
@@ -9,7 +11,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  YUCIHighPassSkinSmoothing: a39834871faa31a8b7e1aa897b2492010ca4f268
+  Vivid: bfac2025e1961e95550bda4f321260d325fa7563
+  YUCIHighPassSkinSmoothing: a160487b7a29bcb4e0b05657fe1a05b3911b69d8
 
 PODFILE CHECKSUM: f3eebbea19aa106cb9b554b77c1a6be52842005b
 

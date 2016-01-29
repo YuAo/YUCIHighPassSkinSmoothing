@@ -1,0 +1,6 @@
+framework module Vivid {
+  umbrella header "Vivid-umbrella.h"
+
+  export *
+  module * { export * }
+}

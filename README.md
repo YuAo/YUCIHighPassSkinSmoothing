@@ -95,7 +95,7 @@ You can also try to apply this filter only to the skin/face area of a image, by 
 
 ##Requirements
 
-* iOS 8.0+ / OS X 10.10+
+* iOS 8.0+ / OS X 10.11+
 * Xcode 7.0+
 
 ##Usage
@@ -130,7 +130,7 @@ Add the following to your `Podfile`
 	pod 'YUCIHighPassSkinSmoothing'
 
 ####Manually
-Clone this repo and [Vivid](https://github.com/YuAo/Vivid) then manually add the files in `Sources` directories to your project.
+Clone this repo __and__ [Vivid](https://github.com/YuAo/Vivid), then manually add the files in `Sources` directories to your project.
 
 ##Contributing
 

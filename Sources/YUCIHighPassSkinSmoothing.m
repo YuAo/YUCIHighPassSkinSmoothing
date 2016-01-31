@@ -111,7 +111,8 @@
             if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
                 [CIFilter registerFilterName:NSStringFromClass([YUCIHighPassSkinSmoothing class])
                                  constructor:[YUCIFilterConstructor constructor]
-                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo]}];
+                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo],
+                                               kCIAttributeFilterDisplayName: @"High Pass Skin Smoothing"}];
             }
         }
     });

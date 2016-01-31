@@ -18,7 +18,8 @@
             if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
                 [CIFilter registerFilterName:NSStringFromClass([YUCIHighPass class])
                                  constructor:[YUCIFilterConstructor constructor]
-                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo]}];
+                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo],
+                                               kCIAttributeFilterDisplayName: @"High Pass"}];
             }
         }
     });

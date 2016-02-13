@@ -124,7 +124,7 @@ __Please run the demo app on an actual device.__ The iOS simulator does not prov
 
 `YUCIHighPassSkinSmoothing` makes use of [Vivid](https://github.com/YuAo/Vivid).
 
-####Cocoapods
+####CocoaPods
 Add the following to your `Podfile`
 
 	pod 'YUCIHighPassSkinSmoothing'

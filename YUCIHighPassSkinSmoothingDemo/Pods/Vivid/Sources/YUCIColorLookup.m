@@ -7,14 +7,22 @@
 //
 
 #import "YUCIColorLookup.h"
+#import "YUCIFilterConstructor.h"
 
 @implementation YUCIColorLookup
 
-- (NSNumber *)inputIntensity {
-    if (!_inputIntensity) {
-        _inputIntensity = @(1.0);
-    }
-    return _inputIntensity;
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        @autoreleasepool {
+            if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
+                [CIFilter registerFilterName:NSStringFromClass([YUCIColorLookup class])
+                                 constructor:[YUCIFilterConstructor constructor]
+                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo,kCICategoryColorEffect,kCICategoryInterlaced,kCICategoryNonSquarePixels],
+                                               kCIAttributeFilterDisplayName: @"Color Lookup"}];
+            }
+        }
+    });
 }
 
 + (CIKernel *)filterKernel {
@@ -27,16 +35,30 @@
     return kernel;
 }
 
+- (NSNumber *)inputIntensity {
+    if (!_inputIntensity) {
+        _inputIntensity = @(1.0);
+    }
+    return _inputIntensity;
+}
+
+- (CIImage *)inputColorLookupTable {
+    if (!_inputColorLookupTable) {
+        _inputColorLookupTable = [CIImage imageWithContentsOfURL:[[NSBundle bundleForClass:self.class] URLForResource:@"YUCIColorLookupTableDefault" withExtension:@"png"]];
+    }
+    return _inputColorLookupTable;
+}
+
 - (CIImage *)outputImage {
     return [[YUCIColorLookup filterKernel] applyWithExtent:self.inputImage.extent
-                                                     roiCallback:^CGRect(int index, CGRect destRect) {
-                                                         if (index == 0) {
-                                                             return destRect;
-                                                         } else {
-                                                             return self.inputColorLookupTable.extent;
-                                                         }
-                                                     }
-                                                       arguments:@[self.inputImage,self.inputColorLookupTable,self.inputIntensity]];
+                                               roiCallback:^CGRect(int index, CGRect destRect) {
+                                                   if (index == 0) {
+                                                       return destRect;
+                                                   } else {
+                                                       return self.inputColorLookupTable.extent;
+                                                   }
+                                               }
+                                                 arguments:@[self.inputImage,self.inputColorLookupTable,self.inputIntensity]];
 }
 
 @end

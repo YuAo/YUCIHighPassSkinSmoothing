@@ -1,0 +1,47 @@
+float normpdf(in float x, in float sigma)
+{
+    return 0.39894*exp(-0.5*x*x/(sigma*sigma))/sigma;
+}
+
+float normpdf3(in vec3 v, in float sigma)
+{
+    return 0.39894*exp(-0.5*dot(v,v)/(sigma*sigma))/sigma;
+}
+
+kernel vec4 filterKernel(sampler inputImage, float bsigma) {
+    const int SAMPLES_COUNT = MACRO_SAMPLES_COUNT;
+
+    float GAUSSIAN_WEIGHTS[SAMPLES_COUNT];
+    MACRO_SETUP_GAUSSIAN_WEIGHTS
+    /*
+        float sigma = float(kSize);
+        for (int j = 0; j <= kSize; ++j)
+        {
+            GAUSSIAN_WEIGHTS[kSize+j] = GAUSSIAN_WEIGHTS[kSize-j] = normpdf(float(j), sigma);
+        }
+    */
+
+    const int kSize = (SAMPLES_COUNT-1)/2;
+    vec3 finalColor = vec3(0.0);
+
+    vec3 c = sample(inputImage,samplerCoord(inputImage)).rgb;
+
+    float Z = 0.0;
+
+    vec3 cc;
+    float factor;
+    float bZ = 1.0/normpdf(0.0, bsigma);
+
+    for (int i=-kSize; i <= kSize; ++i)
+    {
+        for (int j=-kSize; j <= kSize; ++j)
+        {
+            cc = sample(inputImage,samplerTransform(inputImage, destCoord().xy + vec2(float(i),float(j)))).rgb;
+            factor = normpdf3(cc-c, bsigma)*bZ*GAUSSIAN_WEIGHTS[kSize+j]*GAUSSIAN_WEIGHTS[kSize+i];
+            Z += factor;
+            finalColor += factor*cc;
+        }
+    }
+
+    return vec4(finalColor/Z, 1.0);
+}

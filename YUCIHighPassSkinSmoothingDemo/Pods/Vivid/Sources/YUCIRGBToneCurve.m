@@ -31,7 +31,8 @@
             if ([CIFilter respondsToSelector:@selector(registerFilterName:constructor:classAttributes:)]) {
                 [CIFilter registerFilterName:NSStringFromClass([YUCIRGBToneCurve class])
                                  constructor:[YUCIFilterConstructor constructor]
-                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo, kCICategoryColorAdjustment,kCICategoryInterlaced]}];
+                             classAttributes:@{kCIAttributeFilterCategories: @[kCICategoryStillImage,kCICategoryVideo, kCICategoryColorAdjustment,kCICategoryInterlaced],
+                                               kCIAttributeFilterDisplayName: @"RGB Tone Curve"}];
             }
         }
     });

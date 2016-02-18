@@ -8,10 +8,9 @@
 
 import UIKit
 import YUCIHighPassSkinSmoothing
-import Vivid
+import MetalKit
 
 #if !(arch(i386) || arch(x86_64)) && (os(iOS) || os(watchOS) || os(tvOS))
-import MetalKit
 
 class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
 
@@ -19,6 +18,7 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
     
     var context: CIContext!
     var commandQueue: MTLCommandQueue!
+    var inputTexture: MTLTexture!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +31,14 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
  
         self.context = CIContext(MTLDevice: device, options: [kCIContextWorkingColorSpace:CGColorSpaceCreateDeviceRGB()!])
         self.commandQueue = device.newCommandQueue()
+        
+        self.inputTexture = try! MTKTextureLoader(device: self.metalView.device!).newTextureWithCGImage(UIImage(named: "SampleImage")!.CGImage!, options: nil)
     }
 
     func drawInMTKView(view: MTKView) {
         let commandBuffer = self.commandQueue.commandBuffer()
         
-        let texture = YUCIMetalUtilities.textureFromCGImage(UIImage(named: "SampleImage")!.CGImage!, device: self.metalView.device!)
-        let inputCIImage = CIImage(MTLTexture: texture, options: nil)
+        let inputCIImage = CIImage(MTLTexture: inputTexture, options: nil)
         let filter = CIFilter(name: "YUCIHighPassSkinSmoothing")!
         filter.setValue(inputCIImage, forKey: kCIInputImageKey)
         filter.setValue(0.7, forKey: "inputAmount")

@@ -1,0 +1,15 @@
+const vec3 flashColor = vec3(1.0, 0.8, 0.3);
+const float flashVelocity = 3.0;
+
+kernel vec4 filterKernel(__sample inputImage, __sample inputTargetImage,
+float flashPhase,
+float flashIntensity,
+float flashZoomEffect,
+vec4 inputExtent, float progress)
+{
+    vec2 p = (destCoord() - inputExtent.xy)/inputExtent.zw;
+    float intensity = mix(1.0, 2.0*distance(p, vec2(0.5, 0.5)), flashZoomEffect) * flashIntensity * pow(smoothstep(flashPhase, 0.0, distance(0.5, progress)), flashVelocity);
+    vec4 c = mix(inputImage, inputTargetImage, smoothstep(0.5*(1.0-flashPhase), 0.5*(1.0+flashPhase), progress));
+    c += intensity * vec4(flashColor, 1.0);
+    return c;
+}

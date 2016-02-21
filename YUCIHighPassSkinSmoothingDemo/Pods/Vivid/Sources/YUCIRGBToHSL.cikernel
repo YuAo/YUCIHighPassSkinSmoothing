@@ -1,0 +1,24 @@
+kernel vec4 rgb2hsl(__sample inputColor)
+{
+    vec4 color = clamp(inputColor,vec4(0.0),vec4(1.0));
+
+	//Compute min and max component values
+	float MAX = max(color.r, max(color.g, color.b));
+	float MIN = min(color.r, min(color.g, color.b));
+	
+	//Make sure MAX > MIN to avoid division by zero later
+	MAX = max(MIN + 1e-6, MAX);
+	
+	//Compute luminosity
+	float l = (MIN + MAX) / 2.0;
+	
+	//Compute saturation
+	float s = (l < 0.5 ? (MAX - MIN) / (MIN + MAX) : (MAX - MIN) / (2.0 - MAX - MIN));
+	
+	//Compute hue
+	float h = (MAX == color.r ? (color.g - color.b) / (MAX - MIN) : (MAX == color.g ? 2.0 + (color.b - color.r) / (MAX - MIN) : 4.0 + (color.r - color.g) / (MAX - MIN)));
+	h /= 6.0;
+	h = (h < 0.0 ? 1.0 + h : h);
+	
+	return vec4(h, s, l, color.a);
+}

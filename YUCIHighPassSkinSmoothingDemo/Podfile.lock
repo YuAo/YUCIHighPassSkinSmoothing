@@ -1,5 +1,5 @@
 PODS:
-  - Vivid (0.4)
+  - Vivid (0.5)
   - YUCIHighPassSkinSmoothing (1.3):
     - Vivid
 
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Vivid: 5b97bd17244a645ad9bf69982e3b440dbffaf645
+  Vivid: cb41984e2004b020b2b3157e2e36c19e365062f1
   YUCIHighPassSkinSmoothing: a160487b7a29bcb4e0b05657fe1a05b3911b69d8
 
 PODFILE CHECKSUM: f3eebbea19aa106cb9b554b77c1a6be52842005b

@@ -17,6 +17,9 @@ CGFloat const YUCIFilterPreviewImageSpacing = 60;
 CGFloat const YUCIFilterPreviewAreaEdgeInset = 0;
 
 CGRect YUCIMakeRectWithAspectRatioFillRect(CGSize aspectRatio, CGRect boundingRect) {
+    if (CGRectIsInfinite(boundingRect)) {
+        boundingRect = CGRectMake(0, 0, 1600, 1200);
+    }
     CGFloat horizontalRatio = boundingRect.size.width / aspectRatio.width;
     CGFloat verticalRatio = boundingRect.size.height / aspectRatio.height;
     CGFloat ratio;

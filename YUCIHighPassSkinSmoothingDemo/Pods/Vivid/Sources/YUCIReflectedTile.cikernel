@@ -1,0 +1,36 @@
+
+kernel vec2 filterKernel(float inputMode, vec4 inputExtent) {
+    vec2 coord = destCoord();
+    if (coord.x >= inputExtent.x &&
+        coord.x < inputExtent.x + inputExtent.z &&
+        coord.y >= inputExtent.y &&
+        coord.y < inputExtent.y + inputExtent.w
+    ) {
+        return coord;
+    } else {
+        int mode = int(floor(inputMode + 0.5));
+        float w = inputExtent.z - (mode == 0 ? 1.0: 0.0);
+        float h = inputExtent.w - (mode == 0 ? 1.0: 0.0);
+
+        float x = coord.x - inputExtent.x - inputExtent.z;
+        float nx = floor(x/w);
+        float dx = x - nx * w;
+
+        float y = coord.y - inputExtent.y - inputExtent.w;
+        float ny = floor(y/h);
+        float dy = y - ny * h;
+
+        if (int(mod(nx,2.0)) == 1) {
+            coord.x = inputExtent.x + inputExtent.z - (w - dx);
+        } else {
+            coord.x = inputExtent.x + (w - dx);
+        }
+
+        if (int(mod(ny,2.0)) == 1) {
+            coord.y = inputExtent.y + inputExtent.w - (h - dy);
+        } else {
+            coord.y = inputExtent.y + (h - dy);
+        }
+        return coord;
+    }
+}

@@ -1,0 +1,44 @@
+
+float colorLookup(sampler LUTs /* r channel contains data */, float LUTIndex, float value) {
+    vec4 LUTsExtent = samplerExtent(LUTs);
+    return sample(LUTs,samplerTransform(LUTs,vec2(value * 255.0 + 0.5 + LUTsExtent.x, LUTIndex + 0.5 + LUTsExtent.y))).r;
+}
+
+kernel vec4 filterKernel(sampler inputImage, sampler LUTs, vec2 tileGridSize, vec2 tileSize) {
+    vec4 textureColor = sample(inputImage,samplerCoord(inputImage)); /* HSL Color */
+
+    vec2 coord = destCoord();
+
+    float txf = coord.x / tileSize.x - 0.5;
+
+    float tx1 = floor(txf);
+    float tx2 = tx1 + 1.0;
+
+    float xa_p = txf - tx1;
+    float xa1_p = 1.0 - xa_p;
+
+    tx1 = max(tx1, 0.0);
+    tx2 = min(tx2, tileGridSize.x - 1.0);
+
+    float tyf = coord.y / tileSize.y - 0.5;
+
+    float ty1 = floor(tyf);
+    float ty2 = ty1 + 1.0;
+
+    float ya = tyf - ty1;
+    float ya1 = 1.0 - ya;
+
+    ty1 = max(ty1, 0.0);
+    ty2 = min(ty2, tileGridSize.y - 1.0);
+
+    float srcVal = textureColor.b;
+
+    float lutPlane1_ind1 = colorLookup(LUTs, ty1 * tileGridSize.x + tx1, srcVal);
+    float lutPlane1_ind2 = colorLookup(LUTs, ty1 * tileGridSize.x + tx2, srcVal);
+    float lutPlane2_ind1 = colorLookup(LUTs, ty2 * tileGridSize.x + tx1, srcVal);
+    float lutPlane2_ind2 = colorLookup(LUTs, ty2 * tileGridSize.x + tx2, srcVal);
+
+    float res = (lutPlane1_ind1 * xa1_p + lutPlane1_ind2 * xa_p) * ya1 + (lutPlane2_ind1 * xa1_p + lutPlane2_ind2 * xa_p) * ya;
+
+    return vec4(vec3(textureColor.r, textureColor.g, clamp(res,0.0,1.0)),textureColor.a);
+}

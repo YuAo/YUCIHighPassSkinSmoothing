@@ -2,9 +2,11 @@
 kernel vec4 filterKernel(sampler inputImage, sampler toneCurveTexture, float intensity) {
     vec4 textureColor = sample(inputImage,samplerCoord(inputImage));
     vec4 toneCurveTextureExtent = samplerExtent(toneCurveTexture);
-    vec2 redCoord = samplerTransform(toneCurveTexture,vec2(textureColor.r * toneCurveTextureExtent.z + toneCurveTextureExtent.x, toneCurveTextureExtent.y));
-    vec2 greenCoord = samplerTransform(toneCurveTexture,vec2(textureColor.g * toneCurveTextureExtent.z + toneCurveTextureExtent.x, toneCurveTextureExtent.y));
-    vec2 blueCoord = samplerTransform(toneCurveTexture,vec2(textureColor.b * toneCurveTextureExtent.z + toneCurveTextureExtent.x, toneCurveTextureExtent.y));
+
+    vec2 redCoord = samplerTransform(toneCurveTexture,vec2(textureColor.r * 255.0 + 0.5 + toneCurveTextureExtent.x, toneCurveTextureExtent.y + 0.5));
+    vec2 greenCoord = samplerTransform(toneCurveTexture,vec2(textureColor.g * 255.0 + 0.5 + toneCurveTextureExtent.x, toneCurveTextureExtent.y + 0.5));
+    vec2 blueCoord = samplerTransform(toneCurveTexture,vec2(textureColor.b * 255.0 + 0.5 + toneCurveTextureExtent.x, toneCurveTextureExtent.y + 0.5));
+
     float redCurveValue = sample(toneCurveTexture, redCoord).r;
     float greenCurveValue = sample(toneCurveTexture, greenCoord).g;
     float blueCurveValue = sample(toneCurveTexture, blueCoord).b;

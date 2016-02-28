@@ -157,10 +157,18 @@
     return self.skinToneCurveFilter.inputRGBCompositeControlPoints;
 }
 
+- (NSNumber *)inputSharpnessFactor {
+    if (!_inputSharpnessFactor) {
+        _inputSharpnessFactor = @(0.6);
+    }
+    return _inputSharpnessFactor;
+}
+
 - (void)setDefaults {
     self.inputAmount = nil;
     self.inputRadius = nil;
     self.inputToneCurveControlPoints = nil;
+    self.inputSharpnessFactor = nil;
 }
 
 - (CIImage *)outputImage {
@@ -177,10 +185,15 @@
     [blendWithMaskFilter setValue:skinToneCurveFilter.outputImage forKey:kCIInputBackgroundImageKey];
     [blendWithMaskFilter setValue:maskGenerator.outputImage forKey:kCIInputMaskImageKey];
     
-    CIFilter *shapenFilter = [CIFilter filterWithName:@"CISharpenLuminance"];
-    [shapenFilter setValue:@(0.6 * self.inputAmount.floatValue) forKey:@"inputSharpness"];
-    [shapenFilter setValue:blendWithMaskFilter.outputImage forKey:kCIInputImageKey];
-    return shapenFilter.outputImage;
+    double sharpnessValue = self.inputSharpnessFactor.doubleValue * self.inputAmount.doubleValue;
+    if (sharpnessValue > 0) {
+        CIFilter *shapenFilter = [CIFilter filterWithName:@"CISharpenLuminance"];
+        [shapenFilter setValue:@(sharpnessValue) forKey:@"inputSharpness"];
+        [shapenFilter setValue:blendWithMaskFilter.outputImage forKey:kCIInputImageKey];
+        return shapenFilter.outputImage;
+    } else {
+        return blendWithMaskFilter.outputImage;
+    }
 }
 
 @end

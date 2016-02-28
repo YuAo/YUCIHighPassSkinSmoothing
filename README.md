@@ -104,6 +104,8 @@ You can also try to apply this filter only to the skin/face area of a image, by 
 
 Use the `YUCIHighPassSkinSmoothing`, like any other built in core image filters.
 
+Documentation for the input parameters can be found [here](#input-parameters).
+
 ```swift
 let filter = YUCIHighPassSkinSmoothing()
 filter.inputImage = ...

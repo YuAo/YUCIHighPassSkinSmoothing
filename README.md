@@ -87,7 +87,7 @@ These steps can make the result better on the areas with high brightness. The wh
 
 `inputRadius`: A number value that controls the radius (in pixel) of the `High Pass` filter. The default value of this parameter is `8.0`. Try adjusting this value according to the resolution of the input image and the level of detail you want to preserve.
 
-`inputSharpnessFactor`: A number value that controls the sharpness factor of the final `Sharpen` step. The sharpness value is calculated as `inputAmount * inputSharpnessFactor`. The default value for this parameter is 0.6.
+`inputSharpnessFactor`: A number value that controls the sharpness factor of the final `Sharpen` step. The sharpness value is calculated as `inputAmount * inputSharpnessFactor`. The default value for this parameter is `0.6`. __Note:__ Sharpen is an expensive operation (it involves convolution). The final `Sharpen` step will make the output image looks better, however it is not necessary. Consider setting this parameter to `0` when you need to get the best performance.
 
 ##Consideration
 

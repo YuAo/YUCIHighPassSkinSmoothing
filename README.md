@@ -148,6 +148,10 @@ If you find a bug and know exactly how to fix it, please open a pull request. Be
 
 Thanks a lot to [Yien Ma](https://dribbble.com/yien) for providing a lot of suggestions and fine-tunings to the procedure.
 
+##GPUImage Port
+
+A [GPUImage](https://github.com/BradLarson/GPUImage) based version can be found here: [YUGPUImageHighPassSkinSmoothing](https://github.com/YuAo/YUGPUImageHighPassSkinSmoothing)
+
 ##License
 
 YUCIHighPassSkinSmoothing is MIT-licensed. See [LICENSE](https://github.com/YuAo/YUCIHighPassSkinSmoothing/blob/master/LICENSE) file for detail.

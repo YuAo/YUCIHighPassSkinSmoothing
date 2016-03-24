@@ -37,7 +37,8 @@ class OpenGLRenderContextViewController: GLKViewController {
         self.title = String(format: "Input Amount: %.3f", amount)
         self.filter.inputImage = self.inputCIImage
         self.filter.inputAmount = amount
-        self.filter.inputRadius = 7.0 * self.inputCIImage.extent.width/750.0;
+        self.filter.inputRadius = 7.0 * self.inputCIImage.extent.width/750.0
+        self.filter.inputSharpnessFactor = 0
         let outputCIImage = self.filter.outputImage!
         self.ciContext.drawImage(outputCIImage, inRect: AVMakeRectWithAspectRatioInsideRect(outputCIImage.extent.size, CGRectApplyAffineTransform(self.view.bounds, CGAffineTransformMakeScale(UIScreen.mainScreen().scale, UIScreen.mainScreen().scale))), fromRect: outputCIImage.extent)
     }

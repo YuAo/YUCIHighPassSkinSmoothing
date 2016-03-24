@@ -172,6 +172,10 @@
 }
 
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     YUCIHighPassSkinSmoothingMaskGenerator *maskGenerator = [[YUCIHighPassSkinSmoothingMaskGenerator alloc] init];
     maskGenerator.inputRadius = self.inputRadius;
     maskGenerator.inputImage = self.inputImage;

@@ -47,6 +47,10 @@
 }
 
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [blurFilter setValue:self.inputImage.imageByClampingToExtent forKey:kCIInputImageKey];
     [blurFilter setValue:self.inputRadius forKey:kCIInputRadiusKey];

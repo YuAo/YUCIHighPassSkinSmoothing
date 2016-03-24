@@ -8,9 +8,9 @@
 
 import UIKit
 import YUCIHighPassSkinSmoothing
-import MetalKit
 
 #if !(arch(i386) || arch(x86_64)) && (os(iOS) || os(watchOS) || os(tvOS))
+import MetalKit
 
 class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
 

@@ -120,8 +120,12 @@ Can be used to generate a preview image/gif for a filter. All the preview images
 - [ ] Write a paper on the implementation of CLAHE.
 - [ ] Kuwahara filter
 
-##Based on Vivid
+##Related Projects
 
 ####[YUCIHighPassSkinSmoothing](https://github.com/YuAo/YUCIHighPassSkinSmoothing)
 
-An implementation of High Pass Skin Smoothing
+An implementation of High Pass Skin Smoothing.
+
+####[YUCIImageView](https://github.com/YuAo/YUCIImageView)
+
+An image view for rendering CIImage with Metal/OpenGL/CoreGraphics.

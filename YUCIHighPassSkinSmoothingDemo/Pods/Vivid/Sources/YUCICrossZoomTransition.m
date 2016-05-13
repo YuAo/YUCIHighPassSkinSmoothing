@@ -49,7 +49,16 @@
     return _inputTime;
 }
 
+- (void)setDefaults {
+    self.inputStrength = nil;
+    self.inputTime = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage || !self.inputTargetImage) {
+        return nil;
+    }
+    
     CIVector *defaultInputExtent = [CIVector vectorWithCGRect:CGRectUnion(self.inputImage.extent, self.inputTargetImage.extent)];
     CIVector *extent = self.inputExtent?:defaultInputExtent;
     return [[YUCICrossZoomTransition filterKernel] applyWithExtent:extent.CGRectValue

@@ -98,7 +98,16 @@ static NSData * YUCICLAHETransformLUTForContrastLimitedHistogram(vImagePixelCoun
     return _inputTileGridSize;
 }
 
+- (void)setDefaults {
+    self.inputClipLimit = nil;
+    self.inputTileGridSize = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     /* Convert to HSL */
     CIImage *inputImage = [[YUCICLAHE RGBToHSLKernel] applyWithExtent:self.inputImage.extent arguments:@[self.inputImage]];
     
@@ -112,8 +121,8 @@ static NSData * YUCICLAHETransformLUTForContrastLimitedHistogram(vImagePixelCoun
         (NSInteger)inputImage.extent.size.height % tileGridSizeY == 0) {
         inputImageForLUT = inputImage;
     } else {
-        NSInteger dY = tileGridSizeY - ((NSInteger)inputImage.extent.size.height % tileGridSizeY);
-        NSInteger dX = tileGridSizeX - ((NSInteger)inputImage.extent.size.width % tileGridSizeX);
+        NSInteger dY = (tileGridSizeY - ((NSInteger)inputImage.extent.size.height % tileGridSizeY)) % tileGridSizeY;
+        NSInteger dX = (tileGridSizeX - ((NSInteger)inputImage.extent.size.width % tileGridSizeX)) % tileGridSizeX;
         
         inputImageForLUT = [inputImage imageByApplyingFilter:NSStringFromClass([YUCIReflectedTile class]) withInputParameters:@{@"inputMode": @(YUCIReflectedTileModeReflectWithoutBorder)}];
         inputImageForLUT = [inputImageForLUT imageByCroppingToRect:CGRectMake(inputImage.extent.origin.x, inputImage.extent.origin.y, inputImage.extent.size.width + dX, inputImage.extent.size.height + dY)];

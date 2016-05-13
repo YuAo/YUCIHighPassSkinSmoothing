@@ -63,7 +63,18 @@
     return _inputTime;
 }
 
+- (void)setDefaults {
+    self.inputFlashPhase = nil;
+    self.inputFlashIntensity = nil;
+    self.inputFlashZoom = nil;
+    self.inputTime = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage || !self.inputTargetImage) {
+        return nil;
+    }
+    
     CIVector *defaultInputExtent = [CIVector vectorWithCGRect:CGRectUnion(self.inputImage.extent, self.inputTargetImage.extent)];
     CIVector *extent = self.inputExtent?:defaultInputExtent;
     return [[YUCIFlashTransition filterKernel] applyWithExtent:extent.CGRectValue

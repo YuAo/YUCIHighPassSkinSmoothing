@@ -43,7 +43,15 @@
     return _inputMode;
 }
 
+- (void)setDefaults {
+    self.inputMode = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     CGRect inputExtent = self.inputImage.extent;
     return [[YUCIReflectedTile filterKernel] applyWithExtent:CGRectInfinite
                                                  roiCallback:^CGRect(int index, CGRect destRect) {

@@ -72,7 +72,16 @@ static NSDictionary *YUCISurfaceBlurKernels;
     return _inputThreshold;
 }
 
+- (void)setDefaults {
+    self.inputRadius = nil;
+    self.inputThreshold = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     if (self.inputRadius.integerValue <= 0 || self.inputThreshold.doubleValue < 0) {
         return self.inputImage;
     }

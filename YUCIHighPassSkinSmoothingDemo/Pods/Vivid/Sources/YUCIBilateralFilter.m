@@ -87,7 +87,17 @@ static NSDictionary *YUCIBilateralFilterKernels;
     return _inputDistanceNormalizationFactor;
 }
 
+- (void)setDefaults {
+    self.inputRadius = nil;
+    self.inputTexelSpacingMultiplier = nil;
+    self.inputDistanceNormalizationFactor = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     CIKernel *kernel = [YUCIBilateralFilter filterKernelForRadius:[self.inputRadius integerValue]];
     CGFloat inset = -([self.class sampleCountForRadius:self.inputRadius.integerValue] * self.inputTexelSpacingMultiplier.doubleValue)/2.0;
     CIImage *horizontalPassResult = [kernel applyWithExtent:self.inputImage.extent

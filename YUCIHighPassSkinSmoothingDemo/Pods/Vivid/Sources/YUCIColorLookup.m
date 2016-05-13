@@ -49,7 +49,16 @@
     return _inputColorLookupTable;
 }
 
+- (void)setDefaults {
+    self.inputIntensity = nil;
+    self.inputColorLookupTable = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     return [[YUCIColorLookup filterKernel] applyWithExtent:self.inputImage.extent
                                                roiCallback:^CGRect(int index, CGRect destRect) {
                                                    if (index == 0) {

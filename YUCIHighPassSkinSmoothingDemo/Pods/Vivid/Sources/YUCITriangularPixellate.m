@@ -35,10 +35,6 @@
     return kernel;
 }
 
-- (void)setDefaults {
-    
-}
-
 - (NSNumber *)inputScale {
     if (!_inputScale) {
         _inputScale = @(20);
@@ -60,7 +56,17 @@
     return _inputCenter;
 }
 
+- (void)setDefaults {
+    self.inputScale = nil;
+    self.inputVertexAngle = nil;
+    self.inputCenter = nil;
+}
+
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     CGFloat tanHalfInputAngle = tan(self.inputVertexAngle.floatValue/2.0);
     return [[YUCITriangularPixellate filterKernel] applyWithExtent:self.inputImage.extent
                                                        roiCallback:^CGRect(int index, CGRect destRect) {

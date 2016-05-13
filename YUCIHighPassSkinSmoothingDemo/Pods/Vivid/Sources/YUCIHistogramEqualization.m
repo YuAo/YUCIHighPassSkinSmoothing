@@ -40,6 +40,10 @@
 }
 
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     ptrdiff_t rowBytes = self.inputImage.extent.size.width * 4; // ARGB has 4 components
     uint8_t *byteBuffer = calloc(rowBytes * self.inputImage.extent.size.height, sizeof(uint8_t)); // Buffer to render into
     [self.context render:self.inputImage

@@ -36,6 +36,10 @@
 }
 
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     return [[YUCIFXAA filterKernel] applyWithExtent:self.inputImage.extent
                                         roiCallback:^CGRect(int index, CGRect destRect) {
                                             return CGRectInset(destRect, -8, -8); //FXAA_SPAN_MAX

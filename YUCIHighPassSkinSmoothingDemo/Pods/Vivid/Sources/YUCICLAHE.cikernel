@@ -1,13 +1,11 @@
 
-float colorLookup(sampler LUTs /* r channel contains data */, float LUTIndex, float value) {
-    vec4 LUTsExtent = samplerExtent(LUTs);
-    return sample(LUTs,samplerTransform(LUTs,vec2(value * 255.0 + 0.5 + LUTsExtent.x, LUTIndex + 0.5 + LUTsExtent.y))).r;
-}
+#define YUCICLAHE_LOOKUP(LUTs, LUTIndex, value) \
+(sample(LUTs,samplerTransform(LUTs,vec2(value * 255.0 + 0.5 + samplerExtent(LUTs).x, LUTIndex + 0.5 + samplerExtent(LUTs).y))).r)
 
 kernel vec4 filterKernel(sampler inputImage, sampler LUTs, vec2 tileGridSize, vec2 tileSize) {
     vec4 textureColor = sample(inputImage,samplerCoord(inputImage)); /* HSL Color */
 
-    vec2 coord = destCoord();
+    vec2 coord = destCoord() - samplerExtent(inputImage).xy;
 
     float txf = coord.x / tileSize.x - 0.5;
 
@@ -33,10 +31,10 @@ kernel vec4 filterKernel(sampler inputImage, sampler LUTs, vec2 tileGridSize, ve
 
     float srcVal = textureColor.b;
 
-    float lutPlane1_ind1 = colorLookup(LUTs, ty1 * tileGridSize.x + tx1, srcVal);
-    float lutPlane1_ind2 = colorLookup(LUTs, ty1 * tileGridSize.x + tx2, srcVal);
-    float lutPlane2_ind1 = colorLookup(LUTs, ty2 * tileGridSize.x + tx1, srcVal);
-    float lutPlane2_ind2 = colorLookup(LUTs, ty2 * tileGridSize.x + tx2, srcVal);
+    float lutPlane1_ind1 = YUCICLAHE_LOOKUP(LUTs, ty1 * tileGridSize.x + tx1, srcVal);
+    float lutPlane1_ind2 = YUCICLAHE_LOOKUP(LUTs, ty1 * tileGridSize.x + tx2, srcVal);
+    float lutPlane2_ind1 = YUCICLAHE_LOOKUP(LUTs, ty2 * tileGridSize.x + tx1, srcVal);
+    float lutPlane2_ind2 = YUCICLAHE_LOOKUP(LUTs, ty2 * tileGridSize.x + tx2, srcVal);
 
     float res = (lutPlane1_ind1 * xa1_p + lutPlane1_ind2 * xa_p) * ya1 + (lutPlane2_ind1 * xa1_p + lutPlane2_ind2 * xa_p) * ya;
 

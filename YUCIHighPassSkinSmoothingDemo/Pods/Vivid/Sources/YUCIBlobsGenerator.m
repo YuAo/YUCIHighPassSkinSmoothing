@@ -49,6 +49,11 @@
     return _inputTime;
 }
 
+- (void)setDefaults {
+    self.inputExtent = nil;
+    self.inputTime = nil;
+}
+
 - (CIImage *)outputImage {
     return [[YUCIBlobsGenerator filterKernel] applyWithExtent:self.inputExtent.CGRectValue
                                                     arguments:@[self.inputExtent,self.inputTime]];

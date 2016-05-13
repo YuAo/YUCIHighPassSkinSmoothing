@@ -56,6 +56,12 @@
     return _inputRotation;
 }
 
+- (void)setDefaults {
+    self.inputExtent = nil;
+    self.inputTime = nil;
+    self.inputRotation = nil;
+}
+
 - (CIImage *)outputImage {
     return [[YUCIStarfieldGenerator filterKernel] applyWithExtent:self.inputExtent.CGRectValue
                                                         arguments:@[self.inputExtent,self.inputTime,self.inputRotation]];

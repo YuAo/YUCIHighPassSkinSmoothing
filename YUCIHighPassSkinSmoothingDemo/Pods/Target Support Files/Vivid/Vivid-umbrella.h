@@ -14,6 +14,7 @@
 #import "YUCIReflectedTile.h"
 #import "YUCIReflectedTileROICalculator.h"
 #import "YUCIRGBToneCurve.h"
+#import "YUCISkyGenerator.h"
 #import "YUCIStarfieldGenerator.h"
 #import "YUCISurfaceBlur.h"
 #import "YUCITriangularPixellate.h"

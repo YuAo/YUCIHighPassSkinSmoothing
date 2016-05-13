@@ -1,23 +1,25 @@
 
-vec4 sampleTexture(sampler tex, vec2 coord) {
-    return sample(tex, samplerTransform(tex, coord));
-}
+#define YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, coord) \
+(sample(tex, samplerTransform(tex, coord)))
 
-vec4 fxaa(sampler tex, vec2 fragCoord,
-            vec2 v_rgbNW, vec2 v_rgbNE, 
-            vec2 v_rgbSW, vec2 v_rgbSE, 
-            vec2 v_rgbM) {
+kernel vec4 filterKernel(sampler tex) {
+    vec2 fragCoord = destCoord();
+    vec2 v_rgbNW = (fragCoord + vec2(-1.0, -1.0));
+    vec2 v_rgbNE = (fragCoord + vec2(1.0, -1.0));
+    vec2 v_rgbSW = (fragCoord + vec2(-1.0, 1.0));
+    vec2 v_rgbSE = (fragCoord + vec2(1.0, 1.0));
+	vec2 v_rgbM = fragCoord;
 
     const float FXAA_REDUCE_MIN = (1.0/ 128.0);
     const float FXAA_REDUCE_MUL = (1.0 / 8.0);
     const float FXAA_SPAN_MAX = 8.0;
 
     vec4 color;
-    vec3 rgbNW = sampleTexture(tex, v_rgbNW).xyz;
-    vec3 rgbNE = sampleTexture(tex, v_rgbNE).xyz;
-    vec3 rgbSW = sampleTexture(tex, v_rgbSW).xyz;
-    vec3 rgbSE = sampleTexture(tex, v_rgbSE).xyz;
-    vec4 texColor = sampleTexture(tex, v_rgbM);
+    vec3 rgbNW = YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, v_rgbNW).xyz;
+    vec3 rgbNE = YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, v_rgbNE).xyz;
+    vec3 rgbSW = YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, v_rgbSW).xyz;
+    vec3 rgbSE = YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, v_rgbSE).xyz;
+    vec4 texColor = YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, v_rgbM);
     vec3 rgbM  = texColor.xyz;
     vec3 luma = vec3(0.299, 0.587, 0.114);
     float lumaNW = dot(rgbNW, luma);
@@ -40,9 +42,9 @@ vec4 fxaa(sampler tex, vec2 fragCoord,
               max(vec2(-FXAA_SPAN_MAX, -FXAA_SPAN_MAX),
               dir * rcpDirMin));
     
-    vec3 rgbA = 0.5 * (sampleTexture(tex, fragCoord + dir * (1.0 / 3.0 - 0.5)).xyz + sampleTexture(tex, fragCoord + dir * (2.0 / 3.0 - 0.5)).xyz);
+    vec3 rgbA = 0.5 * (YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, fragCoord + dir * (1.0 / 3.0 - 0.5)).xyz + YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, fragCoord + dir * (2.0 / 3.0 - 0.5)).xyz);
 
-    vec3 rgbB = rgbA * 0.5 + 0.25 * (sampleTexture(tex, fragCoord + dir * -0.5).xyz + sampleTexture(tex, fragCoord + dir * 0.5).xyz);
+    vec3 rgbB = rgbA * 0.5 + 0.25 * (YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, fragCoord + dir * -0.5).xyz + YUCIFXAA_SAMPLE_TEXTURE_AT_LOCATION(tex, fragCoord + dir * 0.5).xyz);
 
     float lumaB = dot(rgbB, luma);
     if ((lumaB < lumaMin) || (lumaB > lumaMax))
@@ -50,14 +52,4 @@ vec4 fxaa(sampler tex, vec2 fragCoord,
     else
         color = vec4(rgbB, texColor.a);
     return color;
-}
-
-kernel vec4 filterKernel(sampler inputImage) {
-    vec2 fragCoord = destCoord();
-    vec2 v_rgbNW = (fragCoord + vec2(-1.0, -1.0));
-    vec2 v_rgbNE = (fragCoord + vec2(1.0, -1.0));
-    vec2 v_rgbSW = (fragCoord + vec2(-1.0, 1.0));
-    vec2 v_rgbSE = (fragCoord + vec2(1.0, 1.0));
-	vec2 v_rgbM = fragCoord;
-    return fxaa(inputImage,fragCoord,v_rgbNW,v_rgbNE,v_rgbSW,v_rgbSE,v_rgbM);
 }

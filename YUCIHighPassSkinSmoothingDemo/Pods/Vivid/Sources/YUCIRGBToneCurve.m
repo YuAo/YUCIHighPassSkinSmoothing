@@ -9,6 +9,17 @@
 #import "YUCIRGBToneCurve.h"
 #import "YUCIFilterConstructor.h"
 
+static NSCache * YUCIRGBToneCurveSplineCurveCache(void) {
+    static NSCache *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cache = [[NSCache alloc] init];
+        cache.name = @"YUCIRGBToneCurveSplineCurveCache";
+        cache.totalCostLimit = 40;
+    });
+    return cache;
+}
+
 @interface YUCIRGBToneCurve ()
 
 @property (nonatomic,copy) NSArray<NSNumber *> *redCurve, *greenCurve, *blueCurve, *rgbCompositeCurve;
@@ -56,22 +67,28 @@
 }
 
 - (NSArray<CIVector *> *)defaultCurveControlPoints {
-    return [NSArray arrayWithObjects:[CIVector vectorWithX:0 Y:0], [CIVector vectorWithX:0.5 Y:0.5], [CIVector vectorWithX:1 Y:1], nil];
+    return @[[CIVector vectorWithX:0 Y:0],
+             [CIVector vectorWithX:0.5 Y:0.5],
+             [CIVector vectorWithX:1 Y:1]];
 }
 
 - (void)setDefaults {
     self.inputIntensity = nil;
-    self.inputRedControlPoints = self.defaultCurveControlPoints;
-    self.inputGreenControlPoints = self.defaultCurveControlPoints;
-    self.inputBlueControlPoints = self.defaultCurveControlPoints;
-    self.inputRGBCompositeControlPoints = self.defaultCurveControlPoints;
+    self.inputRedControlPoints = nil;
+    self.inputGreenControlPoints = nil;
+    self.inputBlueControlPoints = nil;
+    self.inputRGBCompositeControlPoints = nil;
 }
 
 - (CIImage *)outputImage {
+    if (!self.inputImage) {
+        return nil;
+    }
+    
     if (!self.toneCurveTexture) {
-        [self validateInputs];
         [self updateToneCurveTexture];
     }
+    
     return [[YUCIRGBToneCurve filterKernel] applyWithExtent:self.inputImage.extent
                                                 roiCallback:^CGRect(int index, CGRect destRect) {
                                                     if (index == 0) {
@@ -86,115 +103,99 @@
 }
 
 - (void)updateToneCurveTexture {
-    if (self.redCurve.count == 256 &&
-        self.greenCurve.count == 256 &&
-        self.blueCurve.count == 256 &&
-        self.rgbCompositeCurve.count == 256)
-    {
-        uint8_t *toneCurveByteArray = calloc(256 * 4, sizeof(uint8_t));
-        for (unsigned int currentCurveIndex = 0; currentCurveIndex < 256; currentCurveIndex++)
-        {
-            // BGRA for upload to texture
-            uint8_t b = fmin(fmax(currentCurveIndex + self.blueCurve[currentCurveIndex].floatValue, 0), 255);
-            toneCurveByteArray[currentCurveIndex * 4] = fmin(fmax(b + self.rgbCompositeCurve[b].floatValue, 0), 255);
-            uint8_t g = fmin(fmax(currentCurveIndex + self.greenCurve[currentCurveIndex].floatValue, 0), 255);
-            toneCurveByteArray[currentCurveIndex * 4 + 1] = fmin(fmax(g + self.rgbCompositeCurve[g].floatValue, 0), 255);
-            uint8_t r = fmin(fmax(currentCurveIndex + self.redCurve[currentCurveIndex].floatValue, 0), 255);
-            toneCurveByteArray[currentCurveIndex * 4 + 2] = fmin(fmax(r + self.rgbCompositeCurve[r].floatValue, 0), 255);
-            toneCurveByteArray[currentCurveIndex * 4 + 3] = 255;
-        }
-        CIImage *toneCurveTexture = [CIImage imageWithBitmapData:[NSData dataWithBytesNoCopy:toneCurveByteArray length:256 * 4 * sizeof(uint8_t) freeWhenDone:YES] bytesPerRow:256 * 4 * sizeof(uint8_t) size:CGSizeMake(256, 1) format:kCIFormatBGRA8 colorSpace:nil];
-        self.toneCurveTexture = toneCurveTexture;
+    if (self.rgbCompositeCurve.count != 256) {
+        self.rgbCompositeCurve = [self getPreparedSplineCurve:self.inputRGBCompositeControlPoints];
     }
-}
-
-- (void)validateInputs {
-    if (_inputRGBCompositeControlPoints.count == 0 ||
-        _inputRedControlPoints.count == 0 ||
-        _inputGreenControlPoints.count == 0 ||
-        _inputBlueControlPoints.count  == 0)
-    {
-        NSArray *defaultControlPoints = self.defaultCurveControlPoints;
-        NSArray *defaultCurve = [self getPreparedSplineCurve:defaultControlPoints];
-        if (_inputRGBCompositeControlPoints.count == 0) {
-            _inputRGBCompositeControlPoints = defaultControlPoints.copy;
-            _rgbCompositeCurve = defaultCurve.copy;
-        }
-        if (_inputRedControlPoints.count == 0) {
-            _inputRedControlPoints = defaultControlPoints.copy;
-            _redCurve = defaultCurve.copy;
-        }
-        if (_inputGreenControlPoints.count == 0) {
-            _inputGreenControlPoints = defaultControlPoints.copy;
-            _greenCurve = defaultCurve.copy;
-        }
-        if (_inputBlueControlPoints.count == 0) {
-            _inputBlueControlPoints = defaultControlPoints.copy;
-            _blueCurve = defaultCurve.copy;
-        }
+    
+    if (self.redCurve.count != 256) {
+        self.redCurve = [self getPreparedSplineCurve:self.inputRedControlPoints];
     }
+    
+    if (self.greenCurve.count != 256) {
+        self.greenCurve = [self getPreparedSplineCurve:self.inputGreenControlPoints];
+    }
+    
+    if (self.blueCurve.count != 256) {
+        self.blueCurve = [self getPreparedSplineCurve:self.inputBlueControlPoints];
+    }
+    
+    uint8_t *toneCurveByteArray = calloc(256 * 4, sizeof(uint8_t));
+    for (NSUInteger currentCurveIndex = 0; currentCurveIndex < 256; currentCurveIndex++)
+    {
+        // BGRA for upload to texture
+        uint8_t b = fmin(fmax(currentCurveIndex + self.blueCurve[currentCurveIndex].floatValue, 0), 255);
+        toneCurveByteArray[currentCurveIndex * 4] = fmin(fmax(b + self.rgbCompositeCurve[b].floatValue, 0), 255);
+        uint8_t g = fmin(fmax(currentCurveIndex + self.greenCurve[currentCurveIndex].floatValue, 0), 255);
+        toneCurveByteArray[currentCurveIndex * 4 + 1] = fmin(fmax(g + self.rgbCompositeCurve[g].floatValue, 0), 255);
+        uint8_t r = fmin(fmax(currentCurveIndex + self.redCurve[currentCurveIndex].floatValue, 0), 255);
+        toneCurveByteArray[currentCurveIndex * 4 + 2] = fmin(fmax(r + self.rgbCompositeCurve[r].floatValue, 0), 255);
+        toneCurveByteArray[currentCurveIndex * 4 + 3] = 255;
+    }
+    CIImage *toneCurveTexture = [CIImage imageWithBitmapData:[NSData dataWithBytesNoCopy:toneCurveByteArray length:256 * 4 * sizeof(uint8_t) freeWhenDone:YES] bytesPerRow:256 * 4 * sizeof(uint8_t) size:CGSizeMake(256, 1) format:kCIFormatBGRA8 colorSpace:nil];
+    self.toneCurveTexture = toneCurveTexture;
 }
 
 - (NSArray<CIVector *> *)inputRGBCompositeControlPoints {
-    [self validateInputs];
+    if (_inputRGBCompositeControlPoints.count == 0) {
+        _inputRGBCompositeControlPoints = self.defaultCurveControlPoints;
+    }
     return _inputRGBCompositeControlPoints;
 }
 
 - (NSArray<CIVector *> *)inputRedControlPoints {
-    [self validateInputs];
+    if (_inputRedControlPoints.count == 0) {
+        _inputRedControlPoints = self.defaultCurveControlPoints;
+    }
     return _inputRedControlPoints;
 }
 
 - (NSArray<CIVector *> *)inputGreenControlPoints {
-    [self validateInputs];
+    if (_inputGreenControlPoints.count == 0) {
+        _inputGreenControlPoints = self.defaultCurveControlPoints;
+    }
     return _inputGreenControlPoints;
 }
 
 - (NSArray<CIVector *> *)inputBlueControlPoints {
-    [self validateInputs];
+    if (_inputBlueControlPoints.count == 0) {
+        _inputBlueControlPoints = self.defaultCurveControlPoints;
+    }
     return _inputBlueControlPoints;
 }
 
 - (void)setInputRGBCompositeControlPoints:(NSArray<CIVector *> *)inputRGBCompositeControlPoints {
-    if (![_inputRGBCompositeControlPoints isEqualToArray:inputRGBCompositeControlPoints]) {
-        _inputRGBCompositeControlPoints = inputRGBCompositeControlPoints.copy;
-        _rgbCompositeCurve = [self getPreparedSplineCurve:_inputRGBCompositeControlPoints];
-        [self validateInputs];
-        [self updateToneCurveTexture];
-    }
+    _inputRGBCompositeControlPoints = inputRGBCompositeControlPoints.copy;
+    _rgbCompositeCurve = nil;
+    _toneCurveTexture = nil;
 }
 
 - (void)setInputRedControlPoints:(NSArray<CIVector *> *)inputRedControlPoints {
-    if (![_inputRedControlPoints isEqualToArray:inputRedControlPoints]) {
-        _inputRedControlPoints = inputRedControlPoints.copy;
-        _redCurve = [self getPreparedSplineCurve:_inputRedControlPoints];
-        [self validateInputs];
-        [self updateToneCurveTexture];
-    }
+    _inputRedControlPoints = inputRedControlPoints.copy;
+    _redCurve = nil;
+    _toneCurveTexture = nil;
 }
 
 - (void)setInputGreenControlPoints:(NSArray<CIVector *> *)inputGreenControlPoints {
-    if (![_inputGreenControlPoints isEqualToArray:inputGreenControlPoints]) {
-        _inputGreenControlPoints = inputGreenControlPoints.copy;
-        _greenCurve = [self getPreparedSplineCurve:_inputGreenControlPoints];
-        [self validateInputs];
-        [self updateToneCurveTexture];
-    }
+    _inputGreenControlPoints = inputGreenControlPoints.copy;
+    _greenCurve = nil;
+    _toneCurveTexture = nil;
 }
 
 - (void)setInputBlueControlPoints:(NSArray<CIVector *> *)inputBlueControlPoints {
-    if (![_inputBlueControlPoints isEqualToArray:inputBlueControlPoints]) {
-        _inputBlueControlPoints = inputBlueControlPoints.copy;
-        _blueCurve = [self getPreparedSplineCurve:_inputBlueControlPoints];
-        [self validateInputs];
-        [self updateToneCurveTexture];
-    }
+    _inputBlueControlPoints = inputBlueControlPoints.copy;
+    _blueCurve = nil;
+    _toneCurveTexture = nil;
 }
 
 #pragma mark - Curve calculation
 
 - (NSArray *)getPreparedSplineCurve:(NSArray *)points
 {
+    NSArray *cachedCurve = [YUCIRGBToneCurveSplineCurveCache() objectForKey:points];
+    if (cachedCurve) {
+        return cachedCurve;
+    }
+    
     if (points && [points count] > 0)
     {
         // Sort the array.
@@ -243,6 +244,9 @@
             }
             [preparedSplinePoints addObject:@(distance)];
         }
+        
+        [YUCIRGBToneCurveSplineCurveCache() setObject:preparedSplinePoints forKey:points cost:1];
+        
         return preparedSplinePoints;
     }
     

@@ -1,6 +1,8 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/Vivid" "$PODS_CONFIGURATION_BUILD_DIR/YUCIHighPassSkinSmoothing"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Vivid.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/YUCIHighPassSkinSmoothing.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Vivid/Vivid.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/YUCIHighPassSkinSmoothing/YUCIHighPassSkinSmoothing.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "Vivid" -framework "YUCIHighPassSkinSmoothing"
-PODS_FRAMEWORK_BUILD_PATH = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-YUCIHighPassSkinSmoothingDemo"
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}/Pods

@@ -9,10 +9,10 @@
 import UIKit
 
 class MainTableTableViewController: UITableViewController {
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let indexPath = self.tableView.indexPathsForSelectedRows?.first {
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 

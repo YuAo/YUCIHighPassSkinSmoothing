@@ -13,6 +13,10 @@ import YUCIHighPassSkinSmoothing
 import MetalKit
 
 class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
+    func draw(in view: MTKView) {
+        //
+    }
+    
 
     @IBOutlet weak var metalView: MTKView!
     
@@ -29,31 +33,34 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
         self.metalView.framebufferOnly = false
         self.metalView.enableSetNeedsDisplay = true
  
-        self.context = CIContext(MTLDevice: device, options: [kCIContextWorkingColorSpace:CGColorSpaceCreateDeviceRGB()!])
-        self.commandQueue = device.newCommandQueue()
+        self.context = CIContext(mtlDevice: device, options: [kCIContextWorkingColorSpace:CGColorSpaceCreateDeviceRGB()])
+        self.commandQueue = device.makeCommandQueue()
         
-        self.inputTexture = try! MTKTextureLoader(device: self.metalView.device!).newTextureWithCGImage(UIImage(named: "SampleImage")!.CGImage!, options: nil)
+        
+        self.inputTexture = try! MTKTextureLoader(device: self.metalView.device!).newTexture(cgImage: UIImage(named: "SampleImage")!.cgImage!, options: nil)
+        
+        //self.inputTexture = try! MTKTextureLoader(device: self.metalView.device!).newTexture(with: UIImage(named: "SampleImage")!.cgImage!, options: nil)
     }
 
     func drawInMTKView(view: MTKView) {
-        let commandBuffer = self.commandQueue.commandBuffer()
+        let commandBuffer = self.commandQueue.makeCommandBuffer()
         
-        let inputCIImage = CIImage(MTLTexture: inputTexture, options: nil)
+        let inputCIImage = CIImage(mtlTexture: inputTexture, options: nil)
         let filter = CIFilter(name: "YUCIHighPassSkinSmoothing")!
         filter.setValue(inputCIImage, forKey: kCIInputImageKey)
         filter.setValue(0.7, forKey: "inputAmount")
-        filter.setValue(7.0 * inputCIImage.extent.width/750.0, forKey: kCIInputRadiusKey)
+        filter.setValue(7.0 * inputCIImage!.extent.width/750.0, forKey: kCIInputRadiusKey)
         let outputCIImage = filter.outputImage!
         
-        let cs = CGColorSpaceCreateDeviceRGB()!
+        let cs = CGColorSpaceCreateDeviceRGB()
         let outputTexture = view.currentDrawable?.texture
-        self.context.render(outputCIImage, toMTLTexture: outputTexture!,
+        self.context.render(outputCIImage, to: outputTexture!,
             commandBuffer: commandBuffer, bounds: outputCIImage.extent, colorSpace: cs)
-        commandBuffer.presentDrawable(view.currentDrawable!)
-        commandBuffer.commit()
+        commandBuffer?.present(view.currentDrawable!)
+        commandBuffer?.commit()
     }
     
-    func mtkView(view: MTKView, drawableSizeWillChange size: CGSize) {
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         view.draw()
     }
 }

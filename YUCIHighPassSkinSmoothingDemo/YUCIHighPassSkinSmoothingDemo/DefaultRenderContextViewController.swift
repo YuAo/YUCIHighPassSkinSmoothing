@@ -11,7 +11,7 @@ import YUCIHighPassSkinSmoothing
 
 class DefaultRenderContextViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    let context = CIContext(options: [kCIContextWorkingColorSpace: CGColorSpaceCreateDeviceRGB()!])
+    let context = CIContext(options: [kCIContextWorkingColorSpace: CGColorSpaceCreateDeviceRGB()])
     let filter = YUCIHighPassSkinSmoothing()
     
     @IBOutlet weak var imageView: UIImageView!
@@ -19,28 +19,31 @@ class DefaultRenderContextViewController: UIViewController,UIImagePickerControll
 
     var sourceImage: UIImage! {
         didSet {
-            self.inputCIImage = CIImage(CGImage: self.sourceImage.CGImage!)
+            self.inputCIImage = CIImage(cgImage: self.sourceImage.cgImage!)
         }
     }
     var processedImage: UIImage?
     
     var inputCIImage: CIImage!
     
-    @IBAction func chooseImageBarButtonItemTapped(sender: AnyObject) {
+    @IBAction func chooseImageBarButtonItemTapped(_ sender: AnyObject) {
         let imagePickerController = UIImagePickerController()
-        imagePickerController.view.backgroundColor = UIColor.whiteColor()
+        imagePickerController.view.backgroundColor = UIColor.white
         imagePickerController.delegate = self
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
+        self.present(imagePickerController, animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.sourceImage = image
-        self.processImage()
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.dismiss(animated: true, completion: nil)
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.sourceImage = image
+            self.processImage()
+        }
     }
     
     override func viewDidLoad() {
@@ -49,27 +52,27 @@ class DefaultRenderContextViewController: UIViewController,UIImagePickerControll
         self.processImage()
     }
     
-    @IBAction func amountSliderTouchUp(sender: AnyObject) {
+    @IBAction func amountSliderTouchUp(_ sender: Any) {
         self.processImage()
     }
     
     func processImage() {
         self.filter.inputImage = self.inputCIImage
-        self.filter.inputAmount = self.amountSlider.value
-        self.filter.inputRadius = 7.0 * self.inputCIImage.extent.width/750.0
+        self.filter.inputAmount = self.amountSlider.value as NSNumber
+        self.filter.inputRadius = 7.0 * self.inputCIImage.extent.width/750.0 as NSNumber
         let outputCIImage = filter.outputImage!
         
-        let outputCGImage = self.context.createCGImage(outputCIImage, fromRect: outputCIImage.extent)
-        let outputUIImage = UIImage(CGImage: outputCGImage, scale: self.sourceImage.scale, orientation: self.sourceImage.imageOrientation)
+        let outputCGImage = self.context.createCGImage(outputCIImage, from: outputCIImage.extent)
+        let outputUIImage = UIImage(cgImage: outputCGImage!, scale: self.sourceImage.scale, orientation: self.sourceImage.imageOrientation)
         
         self.processedImage = outputUIImage
         self.imageView.image = self.processedImage
     }
     
-    @IBAction func handleImageViewLongPress(sender: UILongPressGestureRecognizer) {
-        if sender.state == .Began {
+    @IBAction func handleImageViewLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
             self.imageView.image = self.sourceImage
-        } else if (sender.state == .Ended || sender.state == .Cancelled) {
+        } else if (sender.state == .ended || sender.state == .cancelled) {
             self.imageView.image = self.processedImage
         }
     }

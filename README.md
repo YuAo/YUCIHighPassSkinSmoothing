@@ -8,6 +8,12 @@ An implementation of [High Pass Skin Smoothing](https://www.google.com/search?ie
 
 Available on both OS X and iOS.
 
+## Ports
+
+A [MetalPetal](https://github.com/MetalPetal/MetalPetal) based version can be found here: [MetalPetal/MTIHighPassSkinSmoothingFilter](https://github.com/MetalPetal/MetalPetal/blob/master/Frameworks/MetalPetal/Filters/MTIHighPassSkinSmoothingFilter.h)
+
+A [GPUImage](https://github.com/BradLarson/GPUImage) based version can be found here: [YUGPUImageHighPassSkinSmoothing](https://github.com/YuAo/YUGPUImageHighPassSkinSmoothing)
+
 ## Previews
 
 ![Preview 1](http://yuao.github.io/YUCIHighPassSkinSmoothing/previews/1.jpg)
@@ -147,14 +153,6 @@ If you find a bug and know exactly how to fix it, please open a pull request. Be
 ## Credits
 
 Thanks a lot to [Yien Ma](https://dribbble.com/yien) for providing a lot of suggestions and fine-tunings to the procedure.
-
-## MetalPetal Port
-
-A [MetalPetal](https://github.com/MetalPetal/MetalPetal) based version can be found here: [MetalPetal/MTIHighPassSkinSmoothingFilter](https://github.com/MetalPetal/MetalPetal/blob/master/Frameworks/MetalPetal/Filters/MTIHighPassSkinSmoothingFilter.h)
-
-## GPUImage Port
-
-A [GPUImage](https://github.com/BradLarson/GPUImage) based version can be found here: [YUGPUImageHighPassSkinSmoothing](https://github.com/YuAo/YUGPUImageHighPassSkinSmoothing)
 
 ## License
 

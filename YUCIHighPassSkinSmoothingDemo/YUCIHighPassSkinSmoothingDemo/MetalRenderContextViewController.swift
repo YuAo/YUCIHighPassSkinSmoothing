@@ -33,7 +33,7 @@ class MetalRenderContextViewController: UIViewController, MTKViewDelegate {
         self.metalView.framebufferOnly = false
         self.metalView.enableSetNeedsDisplay = true
  
-        self.context = CIContext(mtlDevice: device, options: [kCIContextWorkingColorSpace:CGColorSpaceCreateDeviceRGB()])
+        self.context = CIContext(mtlDevice: device, options: [CIContextOption.workingColorSpace:CGColorSpaceCreateDeviceRGB()])
         self.commandQueue = device.makeCommandQueue()
         
         

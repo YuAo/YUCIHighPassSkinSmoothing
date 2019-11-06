@@ -11,7 +11,7 @@ import YUCIHighPassSkinSmoothing
 
 class DefaultRenderContextViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    let context = CIContext(options: [kCIContextWorkingColorSpace: CGColorSpaceCreateDeviceRGB()])
+    let context = CIContext(options: [CIContextOption.workingColorSpace: CGColorSpaceCreateDeviceRGB()])
     let filter = YUCIHighPassSkinSmoothing()
     
     @IBOutlet weak var imageView: UIImageView!
@@ -37,10 +37,10 @@ class DefaultRenderContextViewController: UIViewController,UIImagePickerControll
         self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true, completion: nil)
         
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let image = info[.originalImage] as? UIImage {
             self.sourceImage = image
             self.processImage()
         }

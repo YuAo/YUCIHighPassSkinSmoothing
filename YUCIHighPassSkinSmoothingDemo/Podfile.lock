@@ -6,6 +6,10 @@ PODS:
 DEPENDENCIES:
   - YUCIHighPassSkinSmoothing (from `../`)
 
+SPEC REPOS:
+  trunk:
+    - Vivid
+
 EXTERNAL SOURCES:
   YUCIHighPassSkinSmoothing:
     :path: "../"
@@ -16,4 +20,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f3eebbea19aa106cb9b554b77c1a6be52842005b
 
-COCOAPODS: 1.0.0.rc.1
+COCOAPODS: 1.8.4

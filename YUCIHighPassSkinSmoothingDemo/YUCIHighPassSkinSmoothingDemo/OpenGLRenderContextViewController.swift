@@ -16,7 +16,7 @@ class OpenGLRenderContextViewController: GLKViewController {
     var context : EAGLContext!
     var ciContext : CIContext!
     
-    var glkView: GLKView! { return self.view as! GLKView }
+    var glkView: GLKView! { return (self.view as! GLKView) }
     
     var startDate: NSDate = NSDate()
     
@@ -28,7 +28,7 @@ class OpenGLRenderContextViewController: GLKViewController {
         super.viewDidLoad()
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         self.context = EAGLContext(api: .openGLES2)
-        self.ciContext = CIContext(eaglContext: self.context, options: [kCIContextWorkingColorSpace: colorSpace])
+        self.ciContext = CIContext(eaglContext: self.context, options: [.workingColorSpace: colorSpace])
         self.glkView.context = self.context
     }
     

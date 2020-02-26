@@ -89,7 +89,7 @@ These steps can make the result better on the areas with high brightness. The wh
 
 `inputAmount`: A number value that controls the intensity of the `Curve Adjustment` step and affects the sharpness of the final `Sharpen` step. You use this value to control the overall filter strength. Valid from `0` to `1.0`. The default value is `0.75`.
 
-`inputControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
+`inputToneCurveControlPoints`: A array of `CIVector` that defines the control points of the curve in `Curve Adjustment` step. The default value of this parameter is `[(0,0), (120/255.0,146/255.0), (1,1)]`.
 
 `inputRadius`: A number value that controls the radius (in pixel) of the `High Pass` filter. The default value of this parameter is `8.0`. Try adjusting this value according to the resolution of the input image and the level of detail you want to preserve.
 
